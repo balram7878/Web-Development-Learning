@@ -1,6 +1,11 @@
 # React
 React is a JavaScript library used to build efficient and optimized web-based user interfaces. It allows developers to create reusable components. Internally, React is implemented using JavaScript objects.
 
+* React.createElement return a React element which is an JS object and after rendering (ReactDOM) it convert to HTML element.
+
+                     <React>          <Render>
+**React.createElement() => React element => HTML element**
+
 # Libraries vs Frameworks
 **Library**: A library is a pre-written collection of code (like functions, classes, and routines) that you call when needed. You are in control — you decide when and how to use its features.
 
@@ -28,7 +33,17 @@ A CDN is a network of servers around the world that deliver web content faster t
 - Dynamic content is stored on the main server.
 
 # JSX (JavaScript XML)
-JSX is a syntax extension that allows writing HTML code inside JavaScript. It makes it easier and more efficient to build UI components.
+- JSX is a syntax extension that allows writing HTML code inside JavaScript. It makes it easier and more efficient to build UI components.
+
+* Babel is a transpiler that convert modern JS code (JSX code also) to older version of JS for browser compatibility so that the browser runs the older JS without any problem.
+
+* Transpiler (source-to-source complier) is a tool that takes code written in one version or style of a programming language 
+and converts it into another version/style of the same language.
+
+    <Babel>                 <React>                    <ReactDOM (redner)>
+- JSX => React.createElement() => React Element (JSObject) => HTML Element
+
+- array, strings, variables render directly inside JSX but objects are not becauase JSX behaviour is ambiguous here that what you want to extract from a object A JSON string?, Just one of the keys?, Something else? and JSX needs you to provide a clear path to render something. Objects are complex and not displayable as-is, so you need to extract or format what you want from them.
 
 # Bundler
 A bundler plays an important role in preparing production-ready code.
@@ -73,4 +88,4 @@ This file stores the exact version information of every dependency installed —
 
 # npm vs npx
 **npm**: Stands for Node Package Manager. It downloads and installs reusable JavaScript packages (modules). It looks into the central repository, fetches all required dependencies, and stores them in the node_modules folder.
-.parcel-cache
+
