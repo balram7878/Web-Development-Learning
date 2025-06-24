@@ -95,5 +95,33 @@ This file stores the exact version information of every dependency installed —
 # npm vs npx
 **npm**: Stands for Node Package Manager. It downloads and installs reusable JavaScript packages (modules). It looks into the central repository, fetches all required dependencies, and stores them in the node_modules folder.
 
-# Coponenent in React: -
+# Project Structure
 
+1. ***Separate Every Module for Better Readability***
+
+- In React, a “module” refers to each logical part of your app, like components, pages, utilities, etc.
+
+- Keeping each module in its own file or folder makes the code easier to understand, debug, and scale.
+
+🔸 Why It’s Important:
+
+* Helps you and other developers quickly locate files.
+
+* Encourages modular development (small, reusable parts).
+
+* Makes the app easier to test and maintain.
+
+src/
+  components/       ← All reusable React components (JS & CSS)
+  pages/            ← Full pages that combine components
+  utils/            ← Dummy data, constants, helpers
+  assets/           ← Images, logos, static files
+  App.js
+  index.js
+
+**Export Rules and Import Syntax**
+
+* Only One export default Per File
+* A file can have one default export.
+* You can also have multiple named exports.
+* Named Exports Must Use Curly Braces on Import
