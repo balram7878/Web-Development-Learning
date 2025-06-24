@@ -95,3 +95,5 @@ This file stores the exact version information of every dependency installed —
 # npm vs npx
 **npm**: Stands for Node Package Manager. It downloads and installs reusable JavaScript packages (modules). It looks into the central repository, fetches all required dependencies, and stores them in the node_modules folder.
 
+# Coponenent in React: -
+
