@@ -125,3 +125,8 @@ src/
 * A file can have one default export.
 * You can also have multiple named exports.
 * Named Exports Must Use Curly Braces on Import
+
+# HOOKS
+
+- Hooks are functions in React 
+- useState give you a array that [count,setCount] that set value of the state and anothe rone is function that call when state of the variable changed.

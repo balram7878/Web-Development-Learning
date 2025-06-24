@@ -8,6 +8,7 @@ export default function Body(props) {
         <div className="cardInfo">
           <p>{props.item}</p>
           <h3>{props.offer}</h3>
+          <h4>{props.price} $</h4>
           <p>Shop Now</p>
         </div>
       </div>
