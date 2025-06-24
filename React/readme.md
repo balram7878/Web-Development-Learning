@@ -43,7 +43,13 @@ and converts it into another version/style of the same language.
      <Babel>                 <React>                    <ReactDOM (render)>
 - JSX => React.createElement() => React Element (JSObject) => HTML Element
 
-- array, strings, variables render directly inside JSX but objects are not becauase JSX behaviour is ambiguous here that what you want to extract from a object A JSON string?, Just one of the keys?, Something else? and JSX needs you to provide a clear path to render something. Objects are complex and not displayable as-is, so you need to extract or format what you want from them.
+- array, strings, variables,render directly inside JSX but objects are not becauase JSX behaviour is ambiguous here that what you want to extract from a object A JSON string?, Just one of the keys?, Something else? and JSX needs you to provide a clear path to render something. Objects are complex and not displayable as-is, so you need to extract or format what you want from them.
+
+- Expressions are also allowed (that produce a result), but statements are not allowed in JSX.
+
+- User defined tag in JSX are start with capital letter.
+
+- props is a object which contain all the arguments that you passing in a function call.
 
 # Bundler
 A bundler plays an important role in preparing production-ready code.
