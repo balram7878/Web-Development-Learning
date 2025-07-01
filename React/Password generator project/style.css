@@ -1,0 +1,28 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#container {
+  height: 180px;
+  width: 650px;
+  background-color: grey;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.second {
+  display: flex;
+  font-size: 20px;
+  gap: 10px;
+}
+
+input[type="range"]{
+    width: 200px;
+}

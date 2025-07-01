@@ -1,0 +1,78 @@
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#colors {
+  border: 2px solid black;
+  border-radius: 30px;
+  height: 120px;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: fixed;
+  bottom: 20px;
+}
+
+#colors button {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: none;
+}
+
+#red {
+  background-color: #f00;
+}
+
+#yellow {
+  background-color: yellow;
+}
+
+#grey {
+  background-color: grey;
+}
+
+#orange {
+  background-color: orange;
+}
+
+#violet {
+  background-color: violet;
+}
+#container {
+  border: 2px solid black;
+  width: 400px;
+  height: 200px;
+  background-color: rgb(88, 87, 87);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 300px;
+}
+
+h2 {
+  font-size: 40px;
+}
+#buttons {
+  display: flex;
+  gap: 10px;
+  position: relative;
+  bottom: 20px;
+}
+
+#buttons button {
+  background-color: rgb(55, 55, 55);
+  color: white;
+  border: none;
+  padding: 5px;
+  width: 120px;
+  height: 40px;
+  border-radius: 6px;
+  font-size: 15px;
+}

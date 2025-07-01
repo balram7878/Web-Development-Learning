@@ -8,13 +8,13 @@ function App() {
     // state++;
     // let h2 = document.querySelector("h2");
     // h2.innerText = `${state}`;
-    setState(++state);
+    setState(state+1);
   };
   let decrement = () => {
     // state--;
     // let h2 = document.querySelector("h2");
     // h2.innerText = `${state}`; 
-    setState(--state);
+    setState(state-1);
   };
 
   return (
