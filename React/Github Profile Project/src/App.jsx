@@ -4,10 +4,13 @@ import Header from "./component/Header";
 import Main from "./component/Main";
 
 function App() {
+  const [users, setUsers] = useState(20);
+
+
   return (
     <>
-      <Header />
-      <Main />
+      <Header setUsers={setUsers} />
+      <Main users={users}  />
     </>
   );
 }
