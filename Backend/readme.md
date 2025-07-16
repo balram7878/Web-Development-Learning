@@ -2,6 +2,8 @@
 
 - NodeJS is a runtime environment that execute JavaScript code outiside of a browser, it uses V8 which is a JS engine mean run JS code, that also power google chrome.
 - It is just a piece of C++ code, it doesn't mean c++ directly can understand your JS code, instead.
+- before nodeJS, servers were build using languages like c, c++, php, java. Google created v8 engine which translate your JS code into machine code and v8 is written in C++ and that's how JS is used in backend.
+- v8 can be embedded into any c++ aplication, this mean we can embedded (integrate) v8 engine into our c++ program to run and understand JS code. Just like NodeJS does, it is also a c++ application, it embeds v8 and execute JS code.
 
 * How NodeJS run code: -
 
@@ -36,3 +38,27 @@
 - There is also a microtask queue (a.k.a job queue), this is for promices and have higher priority then callback queue. Microtasks are tasks that should run immediately after the current operation, before rendering or other tasks.
 
 
+# IIFE (Immediately Invoked Function Expression)
+- IIFE also known as self-executing anonymous function.
+- IIFE is an idiom in which a JS function run as soon as defined.
+- Arrow IIFE 
+(()=>{
+
+})();
+- Standard IIFE
+(function (){
+
+})();
+- so function declaration are fully hoisted and can be called before their declaraion.
+- but in case of IIFE they are treated as function expression, function expression mean assig a function to a varibale, not fully hoisted that's why IIFE are called immediately.
+* IIFE are used to run a piece of code immediately and IIFE are used to create a private scope, they variables inside IIFE don't polute global scope.
+
+# Modules
+
+- by default NodeJS support CJS(common JS) module system, which uses require and module.exports
+- require is used to import whatever is assigned to module.exports from other modules.
+- module.exports starts as an empty object and it is used to export functions, objects or variables from a modules.
+- import and export are part of ESM (ECMAScript modules) also called ES modules and modern JS module system.
+- to make nodeJS support import and export 
+1. you either need to create a package.json file and set type="module" or
+2. you add .mjs extension to your script files.
