@@ -1,0 +1,40 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: grey;
+  height: 100vh;
+}
+
+button {
+  background-color: rgb(55, 55, 55);
+  color: white;
+  border: none;
+  padding: 5px;
+  width: 120px;
+  height: 40px;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  position: relative;
+  bottom: 20px;
+}
+.container {
+  border: 2px solid black;
+  width: 400px;
+  height: 200px;
+  background-color: rgb(88, 87, 87);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  font-size: 40px;
+}

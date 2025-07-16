@@ -132,16 +132,31 @@ src/
 - useState give you a array that [count,setCount] that set value of the state and anothe rone is function that call when state of the variable changed.
 - Hooks call the function every time whenever the state is changed.
 - Re-render simply mean call the main function again.
+
+> useState Hook:- 
+
 - assignment to const [color, setColor] = useState("white") mean destracture the array i.e., useState return an array and create two const color, and const setColor=()=>{} and initialize with a new value that's why does not give error.
-- useEffect hook..
+
+> useEffect Hook:- 
+
 - useEffect(callback,dependency) => useEffect(()=>{},[])
 - useEffect will be executed last, it depends on dependency whenever the value of dependecy change useEffect hook will executed and if not it will not executed, if dependency is empty then it will executed initially .i.e. initial rendering and if dependecy array not given then it will executed everytime.
-- react render primitive data types for twice mean it bail out but for objects and array it render only once with a similar value because object and arrays are larger.
+
+* react render primitive data types for twice mean it bail out but for objects and array it render only once with a similar value because object and arrays are larger.
+
+> useMemo Hook: -
+
 - useMemo is used to protect the component when no changes occur and it is change due to changes occur in parent here useMemo hook is play a very important to optimize your code.
 - AVOID TO USE useMemo because it is also a overhead, it come with some addtional code and this make code more complex so use when there are lot of changes happen in main file.
 - if we use props then if value of argument will change then useMemo will re-render the compoennt again, if it is a hard coded value then it will not re-render the component.
 
 # Closure:
 - A closure is the combination of a function bundled together with reference to its surrounding state (the lexical environment). In other words a closure gives a function access to its outer scope. In JS closure are created every time a function is created, at function creation time.
-- In hook array function is created only once and it store the reference that store in heap memory. 
-- Stack is used to manage function calls, but memory for functions are allocated in heap area as like arrays and objects, 
+
+> In hook array function is created only once and it store the reference that store in heap memory. 
+> Stack is used to manage function calls, but memory for functions are allocated in heap area as like arrays and objects, 
+
+# React Router
+
+- Web page reload only happens when new HTML file load from the server on the browser, but when JS run then content appears to change (DOM manipulation) but it can't refresh the web page mean HTML file not change that's why it is called **Single Page Application** mean whatever you want to change do it in single HTML file, you should not create another one.
+-  
