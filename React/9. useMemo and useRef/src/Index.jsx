@@ -1,10 +1,10 @@
 import ReactDOM from "react-dom/client";
-import INC from "./component/INC"
+import UseRef from "./component/UseRef";
 
 function App() {
   return (
     <>
-      <INC/>
+      <UseRef />
     </>
   );
 }

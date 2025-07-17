@@ -1,0 +1,16 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+#root{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    background-color: rgb(160, 160, 160);
+}

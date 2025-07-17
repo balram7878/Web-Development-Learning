@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from "react";
-import styles from "./INC.module.css";
+import styles from "./useMemo.module.css";
 
 export default function App() {
   let [count, setCount] = useState(0);

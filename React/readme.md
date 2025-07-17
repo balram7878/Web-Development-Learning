@@ -158,6 +158,12 @@ src/
 
 * const cachedValue=useMemo(callbackFn,dependencies);
 
+> useRef Hook
+- useRef hook does not cause a re-render when it's value change.
+- It is used to store a mutable value that persist across component renders.
+- useRef() returns an object with a single property: .current.
+* This .current property holds the value you assign to it.
+
 # Closure:
 - A closure is the combination of a function bundled together with reference to its surrounding state (the lexical environment). In other words a closure gives a function access to its outer scope. In JS closure are created every time a function is created, at function creation time. It also store reference of all the variables that this function used.
 - const cachedfn=useCallback(fn,dependencies)
