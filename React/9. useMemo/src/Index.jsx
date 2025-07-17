@@ -1,12 +1,10 @@
 import ReactDOM from "react-dom/client";
-import Fibonnaci from "./component/Fibonnaci";
 import INC from "./component/INC"
 
 function App() {
   return (
     <>
       <INC/>
-      <Fibonnaci/>
     </>
   );
 }
