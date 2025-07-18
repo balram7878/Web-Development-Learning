@@ -1,7 +1,7 @@
 # NodeJS: -
 
-- NodeJS is a runtime environment that execute JavaScript code outiside of a browser, it uses V8 which is a JS engine mean run JS code, that also power google chrome.
-- It is just a piece of C++ code, it doesn't mean c++ directly can understand your JS code, instead.
+- NodeJS is a runtime environment that execute JavaScript code outside of a browser, it uses V8 which is a JS engine, that also power google chrome.
+- v8 is just a piece of C++ code, it doesn't mean c++ directly can understand your JS code, instead.
 - before nodeJS, servers were build using languages like c, c++, php, java. Google created v8 engine which translate your JS code into machine code and v8 is written in C++ and that's how JS is used in backend.
 - v8 can be embedded into any c++ aplication, this mean we can embedded (integrate) v8 engine into our c++ program to run and understand JS code. Just like NodeJS does, it is also a c++ application, it embeds v8 and execute JS code.
 
@@ -62,3 +62,29 @@
 - to make nodeJS support import and export 
 1. you either need to create a package.json file and set type="module" or
 2. you add .mjs extension to your script files.
+
+------------------------------------------------------------------------------------------------------------
+
+# Difference b/w ESM and CJS:
+
+- ES module system  are asynchronous enabling feature like top-level await while CJS module system are synchronous.
+- ES module system is designed for modern JS, async loading and better browser support while CJS is older, NodeJS spacific.
+- ES module system run in strict mode while CJS module system run in non-strict mode.
+
+* In CJS when you import a directory (using (require("./folderName")) then nodeJs automatically looks for a index.js file inside that folder and import it.
+* This allow you to organize multiple require statements or module export in separate file, and then centralize them in one index.js file. Later you can simply require the folder of importing each module individually.
+
+# OS
+
+- A processor (CPU) is a hardware chip on the motherboard that contain and coordinate cores. A core is a part of the processor, a unit inside the CPU that fetch, decode and execute intructions from the RAM (RAM is used to temporary store instructions and respective data for CPU).
+
+* fetch - reads/get the instruction from the memory (RAM).
+* decode - understand the instruction mean what the instruction want
+* execute - perform the task
+
+- Single core processor can't run multiple threads parallelly, it run threads by switching b/w them very fast (called context switching).
+- Hyper-threading (technology of Intel) - this mean each core can run 2 threads.
+
+
+
+
