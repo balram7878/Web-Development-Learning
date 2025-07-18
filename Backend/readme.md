@@ -37,20 +37,23 @@
 - Once done these task put in callback queue (a.k.a task queue) and the event loop is checks if the stack is empty and then moves callback to be executed.
 - There is also a microtask queue (a.k.a job queue), this is for promices and have higher priority then callback queue. Microtasks are tasks that should run immediately after the current operation, before rendering or other tasks.
 
-
 # IIFE (Immediately Invoked Function Expression)
+
 - IIFE also known as self-executing anonymous function.
 - IIFE is an idiom in which a JS function run as soon as defined.
-- Arrow IIFE 
-(()=>{
+- Arrow IIFE
+  (()=>{
 
 })();
+
 - Standard IIFE
-(function (){
+  (function (){
 
 })();
+
 - so function declaration are fully hoisted and can be called before their declaraion.
 - but in case of IIFE they are treated as function expression, function expression mean assig a function to a varibale, not fully hoisted that's why IIFE are called immediately.
+
 * IIFE are used to run a piece of code immediately and IIFE are used to create a private scope, they variables inside IIFE don't polute global scope.
 
 # Modules
@@ -59,15 +62,16 @@
 - require is used to import whatever is assigned to module.exports from other modules.
 - module.exports starts as an empty object and it is used to export functions, objects or variables from a modules.
 - import and export are part of ESM (ECMAScript modules) also called ES modules and modern JS module system.
-- to make nodeJS support import and export 
+- to make nodeJS support import and export
+
 1. you either need to create a package.json file and set type="module" or
 2. you add .mjs extension to your script files.
 
-------------------------------------------------------------------------------------------------------------
+---
 
 # Difference b/w ESM and CJS:
 
-- ES module system  are asynchronous enabling feature like top-level await while CJS module system are synchronous.
+- ES module system are asynchronous enabling feature like top-level await while CJS module system are synchronous.
 - ES module system is designed for modern JS, async loading and better browser support while CJS is older, NodeJS spacific.
 - ES module system run in strict mode while CJS module system run in non-strict mode.
 
@@ -85,6 +89,28 @@
 - Single core processor can't run multiple threads parallelly, it run threads by switching b/w them very fast (called context switching).
 - Hyper-threading (technology of Intel) - this mean each core can run 2 threads.
 
+---
 
+- Node.JS is a runtime environment that execute your JS code outside the browser.
+- It uses V8 JS engine to convert your JS code to machine code and execute it, it is written in C++, it does nothing else except running JS code.
+- Global object provide quick or easy access to commonly used functions without needing to import them, e.g. console, setTimeout, setInterval, process etc.
 
+* It acts like a container or environment that provide access to core functionalities without having to import them manually.
+* These functions are provided are Node APIs, not by the JS language itself.
 
+- libuv is a C/C++ library that handle async task (timer, I/O, event loo, thread pool).
+
+* Node API uses libuv internally to provide non-blocking feature to your JS.
+
+- Node APIs a.k.a C++ bindings, are provide implementation for addtional features like fs, http
+
+- Only one Global Execution Context (GEC) is created during the entire execution of a program, and it remains active until the program finishes.
+- Each time a function is called, a new Function Execution Context (FEC) is created, which also goes through two phases:
+
+- Memory Allocation Phase
+- Code Execution Phase
+
+* During the Memory Allocation Phase:
+* Variables declared with var are hoisted and initialized with undefined.
+* Variables declared with let and const are hoisted but remain uninitialized, and are placed in the Temporal Dead Zone (TDZ).
+* Function declarations are fully hoisted along with their definitions.
