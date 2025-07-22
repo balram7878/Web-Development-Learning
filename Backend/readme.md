@@ -98,7 +98,7 @@
 * It acts like a container or environment that provide access to core functionalities without having to import them manually.
 * These functions are provided are Node APIs, not by the JS language itself.
 
-- libuv is a C/C++ library that handle async task (timer, I/O, event loo, thread pool).
+- libuv is a C/C++ library that handle async task (timer, I/O, event loop, thread pool).
 
 * Node API uses libuv internally to provide non-blocking feature to your JS.
 
@@ -114,3 +114,97 @@
 * Variables declared with var are hoisted and initialized with undefined.
 * Variables declared with let and const are hoisted but remain uninitialized, and are placed in the Temporal Dead Zone (TDZ).
 * Function declarations are fully hoisted along with their definitions.
+
+---
+
+# Servers
+
+- A server can be either hardware or software.
+- it is a system that listens for incoming request and respond to them.
+- web servers are powerful physical machines usually located in data centers.
+- A software server (Node.js express, Apache, python flask) is a program that run on hardware server.
+
+> Why you can't rely on your local machine as a server
+
+- It's fine for local testing or very few users.
+- But it is not suitable for large scale application.
+- It can't handles high traffic or scaled infinitely.
+- your machine must stay online 24\*7.
+
+> Hosting on cloud services
+
+- Cloud providers like AWS (Amazon web service), Azure, Heroku, vercel etc. are offer powerful server machines (hardware). You only need to deploy your code (HTML, CSS, JS, database, backend) onto these machines.
+- These services charge based on usage (bandwidth, storgae, compute).
+
+> A Socket a combination of a port number and an IP address. It enable communication b/w a server and a client.
+
+# Why port number matters: -
+
+- Your device run multiple applications, each using a different port (browser, youtube, whatsapp)
+- A port ensure that the response from the server reaches to the correct application.
+  > Examples of default ports:
+- HTTP → 80
+- HTTPS → 443
+
+## Client IP:Client Port <----> Server IP:Server Port
+
+# Duplex Communication
+
+- Full-Duplex: Both parties can send and receive data at the same time (like a phone call).
+- Half-Duplex: Only one party can send data at a time (like a walkie-talkie).
+
+# webSocket and webRTC
+
+- webSocket and webRTC both enables two-way communication (duplex),both parties can receive or send the data at a time.
+- webSocket is a protocol that enables two-way (full-duplex) communication b/w a client and a server. It start with aa HTTP handshake then upgrade the connection to webSocket, once upgrade the communication is done directly over a single TCP connection - no more HTTPs.
+
+* webRTC enable direct real-time peer-to-peer communication (support audio,video,file sharing) b/w clients.
+* However it still needs a signaling server for initial setup, where it exchange info like IP, port, encryption keys.
+
+---
+
+# Monolithic and Microservices
+
+- Monolithic architecture means your entire application build as a single unit. All features- UI, authentication, payment, database access - are bundles together in one codebase, one deployable unit.
+- Microservices means breaks down your application into small, independent services, where each service is responsible for one functionality.
+
+- API is interface b/w two systems that allow to communicate with each other.
+- API are set of rules that enable communication b/w two different software components with each other.
+
+---
+
+## Express
+
+> > Express.js is a backend web application framework built on top of Node.js
+
+> Why use Express.js
+
+- It simplifes writing server code in Node.js
+- makes routing, middleware and request/response handling more efficient.
+
+# HTTP (Hyper Text Transfer Protocol)
+
+- It is a communication protocol used for transferring data b/w a client (like your browser) and a server.
+- It is stateless - each request is treated as independently
+- Follows request/response model.
+- Uses methods like GET, POST, PATCH, PUT, DELETE
+
+# HTTP methods
+
+- Get: read data from the server
+- Post: send new data to the server
+- Patch: update existing data (full replace)
+- Put: update part of the data (partial update)
+- Delete: remove data from the server
+
+# CRUD Operations
+
+- It represent four basic operations of persistent storage (Database)
+  > Create - POST - Add new data
+  > Read - GET - Retrive existing data
+  > Update - PATCH/PUT - Modify existing data
+  > Delete - DELETE - Remove data
+
+# Nodemon
+
+- It is a tool that automatically restart your Node.js server whenever you make change in your files.
