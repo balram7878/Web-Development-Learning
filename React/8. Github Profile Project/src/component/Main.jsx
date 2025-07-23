@@ -1,17 +1,9 @@
-import { useEffect, useState } from "react";
+
+import useFetch  from "./useFetch"
 export default function Main({users}) {
 
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(`https://api.github.com/users?since=${Math.ceil(Math.random()*1000)}per_page=${users}`);
-      const data = await response.json();
-      setData(data);
-      console.log(data);
-    }
-    fetchData();
-  }, [users]);
+  const data=useFetch();
+  console.log(data)
 
   return (
     <>

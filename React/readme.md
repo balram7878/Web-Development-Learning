@@ -230,5 +230,6 @@ index.js
 
 # React Router
 
-- Web page reload only happens when new HTML file load from the server on the browser, but when JS run then content appears to change (DOM manipulation) but it can't refresh the web page mean HTML file not change that's why it is called **Single Page Application** mean whatever you want to change do it in single HTML file, you should not create another one.
--
+- Web page reload only happens when new HTML file load from the server on the browser, but when JS run then content appears to change (DOM manipulation) but it can't refresh the web page mean HTML file not change that's why it is called **Single Page Application** mean whatever you want to change do it in single HTML file, you dont have to create another one.
+
+# Route Params

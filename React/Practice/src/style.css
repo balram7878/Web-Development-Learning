@@ -1,0 +1,12 @@
+#root{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    height: 200px;
+    width: 200px;
+    border: solid black 2px;
+    color: black;
+    text-align: center;
+}
