@@ -185,7 +185,7 @@
 
 # HTTP (Hyper Text Transfer Protocol)
 
-- It is a communication protocol used for transferring data b/w a client (like your browser) and a server.
+- It is a communication protocol used for transferring (exchange) data b/w a client (like your browser) and a server.
 - It is stateless - each request is treated as independently
 - Follows request/response model.
 - Uses methods like GET, POST, PATCH, PUT, DELETE
@@ -212,3 +212,12 @@
 
 ---
 
+# POSTMEN:- 
+- A postmen is a GUI based API client tool or software used to send request and receive response from the server, more or less it let's you test how an API work.
+
+# HTTP APIs: - 
+- APIs is a set of rules and a interface to communicate b/w a server and a client.
+- So, HTTP API is an API that used HTTP protocol to exchange data.
+
+# Why we can't POST data via browser URL like we fetch data with GET
+> Browser address bar only send GET request to the server, because GET is used for read the data from the server. But POST method and other method require header, body and other things.
