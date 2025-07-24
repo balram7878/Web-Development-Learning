@@ -2,24 +2,25 @@ const express = require("express");
 
 const app = express();
 
-// app.use("/support/contact", (req, res) => {
-//   res.send("COntact page");
-// });
-// app.use("/person+l", (req, res) => {
-//   res.send({ name: "balram", age: 21, gender: "male" });
-// });
-app.use("/homepage/:id/:user", (req, res) => {
-  console.log(req.params)
-  res.send("Home Page");
+app.use(express.json() )
+
+app.get("/", (req, res) => {
+  res.send({name:"John"});
 });
-// app.use("/support", (req, res) => {
-//   res.send("Support page");
-// });
 
-// app.use("/", (req, res) => {
-//   res.send("default page");
+app.post("/", (req, res) => {
+  res.send("send new data to the server");
+  console.log(req.body)
+});
+// app.patch("/", (req, res) => {
+//   res.send("update part of the existing data");
 // });
-
-app.listen(8000, () => {
-  console.log("listening at 4000 port");
+// app.put("/", (req, res) => {
+//   res.send("update existing data (full replace)");
+// });
+// app.delete("/", (req, res) => {
+//   res.send("data deleted successfully"); 
+// });
+app.listen(1234, () => {
+  console.log("listen on 1234 port");
 });

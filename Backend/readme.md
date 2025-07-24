@@ -140,6 +140,7 @@
 
 # Why port number matters: -
 
+- A port is a logical number in your system.
 - Your device run multiple applications, each using a different port (browser, youtube, whatsapp)
 - A port ensure that the response from the server reaches to the correct application.
   > Examples of default ports:
@@ -168,7 +169,7 @@
 - Monolithic architecture means your entire application build as a single unit. All features- UI, authentication, payment, database access - are bundles together in one codebase, one deployable unit.
 - Microservices means breaks down your application into small, independent services, where each service is responsible for one functionality.
 
-- API is interface b/w two systems that allow to communicate with each other.
+- APIs provide a interface b/w a client and a server that allow to communicate with each other to exchange data.
 - API are set of rules that enable communication b/w two different software components with each other.
 
 ---
@@ -193,8 +194,8 @@
 
 - Get: read data from the server
 - Post: send new data to the server
-- Patch: update existing data (full replace)
-- Put: update part of the data (partial update)
+- Patch: update part of the data (partial update)
+- Put: update existing data (full replace)
 - Delete: remove data from the server
 
 # CRUD Operations
@@ -208,3 +209,6 @@
 # Nodemon
 
 - It is a tool that automatically restart your Node.js server whenever you make change in your files.
+
+---
+
