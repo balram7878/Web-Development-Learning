@@ -256,7 +256,6 @@
 
 - JSON is a text-based format that can be easily understood and parsed by different programming languages.
 - We convert JavaScript objects to JSON using JSON.stringify(), because converting plain text to binary (0s and 1s) is easier than converting a complex object.
-- Arrays can also be sent in JSON format.
 
 # Parsing and Serialization
 
@@ -266,22 +265,22 @@
 - In C++, structures or libraries are used for JSON parsing.
 - When the server responds with data, it's also in JSON format so that the client (browser) can convert it back into a JavaScript object using response.json() in the frontend.
 
-
 # Diffreence b/w JS object and JSON
 
-Feature	                     JavaScript Object	                                            JSON
-Type	                Object (code-level)	                                      String (text-based)
-Keys	                Can be without quotes or with single/double quotes	      Must be in double quotes
-Data Types	          Can include functions, undefined, symbols	                Only string, number, boolean, array, object, null
-Trailing Comma	      Allowed	                                                  Not allowed
-Usage	                Used in live JavaScript code	                            Used to send data between client and server
-Conversion	          Native	                                                  Requires JSON.stringify() and JSON.parse()
+Feature -- JavaScript Object -- JSON
+Type -- Object (code-level) -- String (text-based)
+Keys -- Can be without quotes or with single/double quotes -- Must be in double quotes
+Data -- Types Can include functions, undefined, symbols -- Only string, number, boolean, array, object, null
+Trailing Comma -- Allowed -- Not allowed
+Usage -- Used in live JavaScript code -- Used to send data between client and server
+Conversion -- Native -- Requires JSON.stringify() and JSON.parse()
 
-* Valid JSON must either be an object {} or an array [].
+- Valid JSON must either be an object {} or an array [].
 
-* header section in the req contain metadata such as: 
-- content-type specifies the format of the request or expected response.
-> application/json, application/xml etc
-- this help the server that how to interpret incoming request and how the client expect the response to be formatted.
+> header section in the req contain metadata such as:
 
+* content-type specifies the format of the request or expected response.
+  > application/json, application/xml etc
+* this help the server that how to interpret incoming request and how the client expect the response to be formatted.
 
+---

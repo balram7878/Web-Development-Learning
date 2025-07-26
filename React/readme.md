@@ -229,34 +229,54 @@ index.js
 
 - can lead to unnecessary re-renders in intermediate compoenents.
 
+---
+
 # React Router
 
 - Web page reload only happens when new HTML file load from the server on the browser, but when JS run then content appears to change (DOM manipulation) but it can't refresh the web page mean HTML file not change that's why it is called **Single Page Application** mean whatever you want to change do it in single HTML file, you dont have to create another one.
 
 # Route Params
 
+---
+
 # Redux
 
 - Redux is a **state management library** commonly used in react applications but it can be used with any JS framework.
+- State is a special object (internally) that store dynamic data. When the state is changes, react re-renders the component to reflect the new data.
 - Redux help you to manage and centalize the application's state in a single place (called store) so that components can access and update the state.
+  **In redux we don't write state modification logic directly inside individual components. Instead all the logic that changes the state are write in a central place - redux store. This ensure that: -**
 
-## State is a 
-> > Why Redux: -
-> > Passing data through many levels of components (props drilling) become hard to manage. Redux solves this by
+1. There is only one source of truth
+2. Everyone follow the same rules and patterns to update the state
+   **If Redux allowed state-changing logic in components, different developers might write conflicting or buggy logic, leading to uncontrolled updates, difficult debugging, and unexpected side effects. That’s why Redux enforces a strict architecture — to improve maintainability, testability, and debugging.**
+
+# Why Redux: -
+
+> Passing data through many levels of components (props drilling) become hard to manage. Redux solves this by
 
 - store all states at single place
 - making it accessible to every components wihtour deeply nested props
 
 # Reducer
 
+- Reducer is a function that receive the current state and an action and return a new updated state.
+
 # Store
+
+- used to centralize, and manage all states of the application at a single place so that components can access and update the state.
 
 # Dispatch
 
+- a method used to send actions to the reducer
+
 # Slice
 
-# React Redux
+- slice is a way to organize and manage a piece of your store (glabal redux state).
+  > A slice include:
 
-# Redux toolkit
+1. name - a unique name of the slice
+2. initial state - the default value for this piece of state
+3. reducers - functions that define how this slice state changes in response to actions
+4. actions - redux toolkil automatically generates action creator for each reducer.
 
 # useSelector
