@@ -2,25 +2,43 @@ const express = require("express");
 
 const app = express();
 
-app.use(express.json() )
+app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send({name:"John"});
+const books = [
+  {
+    id:1,
+    title: "Rich Dad Poor Dad",
+    author: "Robert Kiyosaki",
+  },
+  {
+    id:2,
+    title: "Atomic Habits",
+    author: "James Clear",
+  },
+];
+
+// APIs end point
+app.get("/book", (req, res) => {
+  res.send(books);
 });
 
-app.post("/", (req, res) => {
-  res.send("send new data to the server");
-  console.log(req.body)
+app.get("/book/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const book = books.find(
+    (book) => book.id === id
+  );
+  if (book) res.send(book);
+  else res.send(`${id} not found`);
 });
-// app.patch("/", (req, res) => {
-//   res.send("update part of the existing data");
-// });
-// app.put("/", (req, res) => {
-//   res.send("update existing data (full replace)");
-// });
-// app.delete("/", (req, res) => {
-//   res.send("data deleted successfully"); 
-// });
+
+//APIs end point
+app.post("/book", (req, res) => {
+  // console.log(req.body);
+  books.push(req.body);
+  // console.log(books);
+  res.send("your book data saved successfully");
+});
+
 app.listen(1234, () => {
   console.log("listen on 1234 port");
 });

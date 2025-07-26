@@ -225,7 +225,8 @@ index.js
 
 ## Props drilling is when you pass data (props) from a top-level parent component down through multiple nested components, even if some them don't need it, just to reach a deeply nested child component.
 
-- Makes code hard to manage and read as your component tree grows.
+> Passing data to many levels of component this makes code hard to manage and read as your component tree grows.
+
 - can lead to unnecessary re-renders in intermediate compoenents.
 
 # React Router
@@ -233,3 +234,29 @@ index.js
 - Web page reload only happens when new HTML file load from the server on the browser, but when JS run then content appears to change (DOM manipulation) but it can't refresh the web page mean HTML file not change that's why it is called **Single Page Application** mean whatever you want to change do it in single HTML file, you dont have to create another one.
 
 # Route Params
+
+# Redux
+
+- Redux is a **state management library** commonly used in react applications but it can be used with any JS framework.
+- Redux help you to manage and centalize the application's state in a single place (called store) so that components can access and update the state.
+
+## State is a 
+> > Why Redux: -
+> > Passing data through many levels of components (props drilling) become hard to manage. Redux solves this by
+
+- store all states at single place
+- making it accessible to every components wihtour deeply nested props
+
+# Reducer
+
+# Store
+
+# Dispatch
+
+# Slice
+
+# React Redux
+
+# Redux toolkit
+
+# useSelector

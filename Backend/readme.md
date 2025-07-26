@@ -193,6 +193,13 @@
 # HTTP methods
 
 - Get: read data from the server
+
+* Get method also send data through the URL using query parameter but for small and non-sensitive data. But there are somolimitations to send data from get method
+
+1. Visible data in the browser's address bar (not secure)
+2. Limited data size
+3. cached and bookmarked which is not good for sensitive data
+
 - Post: send new data to the server
 - Patch: update part of the data (partial update)
 - Put: update existing data (full replace)
@@ -212,12 +219,69 @@
 
 ---
 
-# POSTMEN:- 
+# POSTMEN:-
+
 - A postmen is a GUI based API client tool or software used to send request and receive response from the server, more or less it let's you test how an API work.
 
-# HTTP APIs: - 
+# HTTP APIs: -
+
 - APIs is a set of rules and a interface to communicate b/w a server and a client.
 - So, HTTP API is an API that used HTTP protocol to exchange data.
+- app.get(). app.post() are APIs end point.
 
 # Why we can't POST data via browser URL like we fetch data with GET
+
 > Browser address bar only send GET request to the server, because GET is used for read the data from the server. But POST method and other method require header, body and other things.
+
+- **req** containe all the data coming from the frontend to the server.
+- **res** is used to send the data back from the server to the frontend.
+
+# How the Server Knows What to Respond With
+
+- When a client sends different types of requests to the same server, the server determines how to respond based on the information in the req object.
+- The req object includes details such as the HTTP method (GET, POST, etc.), URL path, headers, query parameters, and request body. This helps the server decide what response to send.
+
+# Browser Adds Default Information
+
+- When we make a fetch() request from the browser without specifying a method, the browser defaults it to a GET request.
+- Even if you don’t explicitly pass headers or method, the browser attaches additional metadata (like headers, content-type, etc.) to help the server understand the request.
+
+# Frontend vs Backend Language Compatibility
+
+- Frontend of a web application is usually built using HTML, CSS, and JavaScript.
+- Backend can be built using many languages like C++, Java, JavaScript (Node.js), Python, etc.
+- JavaScript objects can't be directly understood by backend languages other than JavaScript. So, to ensure compatibility, data is sent in JSON (JavaScript Object Notation) format.
+
+# Why JSON?
+
+- JSON is a text-based format that can be easily understood and parsed by different programming languages.
+- We convert JavaScript objects to JSON using JSON.stringify(), because converting plain text to binary (0s and 1s) is easier than converting a complex object.
+- Arrays can also be sent in JSON format.
+
+# Parsing and Serialization
+
+- On the server, incoming JSON data needs to be parsed back into native data structures.
+- In Express.js (Node), this is done using express.json().
+- In Python (Flask/Django), different JSON parsers are used.
+- In C++, structures or libraries are used for JSON parsing.
+- When the server responds with data, it's also in JSON format so that the client (browser) can convert it back into a JavaScript object using response.json() in the frontend.
+
+
+# Diffreence b/w JS object and JSON
+
+Feature	                     JavaScript Object	                                            JSON
+Type	                Object (code-level)	                                      String (text-based)
+Keys	                Can be without quotes or with single/double quotes	      Must be in double quotes
+Data Types	          Can include functions, undefined, symbols	                Only string, number, boolean, array, object, null
+Trailing Comma	      Allowed	                                                  Not allowed
+Usage	                Used in live JavaScript code	                            Used to send data between client and server
+Conversion	          Native	                                                  Requires JSON.stringify() and JSON.parse()
+
+* Valid JSON must either be an object {} or an array [].
+
+* header section in the req contain metadata such as: 
+- content-type specifies the format of the request or expected response.
+> application/json, application/xml etc
+- this help the server that how to interpret incoming request and how the client expect the response to be formatted.
+
+
