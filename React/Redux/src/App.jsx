@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import Counting from "./component/Counting";
 
 function App() {
+  // console.log(store);
   return (
     <>
       <Provider store={store}>

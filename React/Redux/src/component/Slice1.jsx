@@ -17,6 +17,6 @@ const slice = createSlice({
     },
   },
 });
-
+console.log(slice)
 export const { increment, decrement, reset } = slice.actions;
-export default slice.reducer; // ✅ fixed
+export default slice.reducer; 

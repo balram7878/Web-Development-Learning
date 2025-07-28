@@ -280,3 +280,19 @@ index.js
 4. actions - redux toolkil automatically generates action creator for each reducer.
 
 # useSelector
+
+- useSelector is a hook that is used to read the state from the store inside a component.
+- const count = useSelector((state) => state.counter.value);
+- state={
+  slice:{
+  count:0
+  }
+  }
+
+- state is like a whole store
+
+* when you use useSelector, you are subscribing to a specific part of the state.
+
+# useDispatch
+
+- useDispatch is a hook in react-redux that give you access to the dispatch function so you send the actions to the store.
