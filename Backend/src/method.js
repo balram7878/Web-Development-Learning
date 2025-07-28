@@ -15,14 +15,32 @@ const books = [
     title: "Atomic Habits",
     author: "James Clear",
   },
+  {
+    id:3,
+    title:"Beyond Stars",
+    author:"Balram Meena"
+  },
+  {
+    id:4,
+    title:"Turning Points",
+    author:"Balram Meena"
+  }
 ];
 
 // APIs end point
 app.get("/book", (req, res) => {
+ 
+  if(req.query.author){
+    const book=books.filter(book=>book.author===req.query.author)
+    res.send(book)
+  }
+  else
   res.send(books);
+
 });
 
 app.get("/book/:id", (req, res) => {
+
   const id = parseInt(req.params.id);
   const book = books.find((book) => book.id === id);
   if (book) res.send(book);
@@ -37,8 +55,8 @@ app.post("/book", (req, res) => {
   res.send("your book data saved successfully");
 });
 
-app.put("/book/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+app.put("/book", (req, res) => {
+  const id = parseInt(req.body.id);
   const index = books.findIndex((book) => book.id === id);
   if(index!=-1){
     books[index]={
@@ -46,13 +64,13 @@ app.put("/book/:id", (req, res) => {
       title:req.body.title,
       author:req.body.author
     }
-    res.send(`Book with id: ${id} replced successfully`);
+    res.status(404).send(`Book with id: ${id} replced successfully`);
   }
   else
     res.status(404).send(`Book with id: ${id} not found`);
 });
-app.patch("/book/:id",(req,res)=>{
-const id=parseInt(req.params.id);
+app.patch("/book",(req,res)=>{
+const id=parseInt(req.body.id); 
 const book=books.find(book=>book.id===id);
 if(book){
 if(req.body.title) book.title=req.body.title
@@ -65,3 +83,14 @@ else
 app.listen(1234, () => {
   console.log("listen on 1234 port");
 });
+
+app.delete("/book/:id",(req,res)=>{
+const id=parseInt(req.params.id);
+const index=books.findIndex(book=>book.id===id)
+if(index!=-1){
+books.splice(index,1);
+res.send(`Book with id: ${id} deleted successfully.`);
+}
+else
+  res.status(404).send(`Book with id: ${id} not found.`)
+})

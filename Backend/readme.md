@@ -279,8 +279,51 @@ Conversion -- Native -- Requires JSON.stringify() and JSON.parse()
 
 > header section in the req contain metadata such as:
 
-* content-type specifies the format of the request or expected response.
+- content-type specifies the format of the request or expected response.
   > application/json, application/xml etc
-* this help the server that how to interpret incoming request and how the client expect the response to be formatted.
+- this help the server that how to interpret incoming request and how the client expect the response to be formatted.
+
+---
+
+# Query Parameter and Dynamic Parameter
+
+- GET /book?author=Balram Meena --> this is query parameter used for filtering and searching. It’s optional, and you can have multiple like ?author=Balram&year=2024.
+- GET /book/:id --> this is a dynamic route parameter, used to fetch specific resources by ID, title etc.
+  Parameter Type --- Sent in --- Use with methods --- Best for --- Notes
+  Query Params --- URL --- GET, DELETE --- Filtering, search --- Visible in URL, not for sensitive data
+  Route Params --- URL --- GET, PUT, PATCH, DELETE --- Identifying specific resource --- Fixed structure like /book/:id
+  Request Body --- Body --- POST, PUT, PATCH --- Sending full or partial data --- Use application/json; secure and maintains structure
+  > Why use Request Body for Sensitive Data
+  > URLs are: Visible in browser history, Shared when copying links
+  > Bodies: Sent securely (especially over HTTPS), Not visible in address bar, Keep objects, types, and structure intact (e.g., { id: 1, title: "...".
+  > Format Difference
+- URL Parameters & Queries: Always strings
+- Request Body (JSON): Preserves types
+
+# Middleware
+- middleware is a function that has access to: (res,res,next)
+- it is executed b/w when the server receives a request and send a response.
+1. it can modify request and response
+2. end the request-response cycle
+3. call next() to pass control to the next middleware/handler
+
+app.use() --> middleware mounting
+app.get() and app.post() --> route handler
+
+# TCP: One Request = One Response
+- In HTTP over TCP, the server cannot send multiple responses to a single request.
+Once the client sends a request, the server sends one response. That request-response cycle is finished after that.
+- That’s why: You can’t call res.send() more than once.
+- If the client doesn’t receive a response (e.g., due to an error or bug), it might keep retrying (in a loop) until timeout.
+
+# Why Store Logs?
+> Logs help us:
+- Monitor user activity
+- Debug errors or bugs
+- Track API usage (for rate limiting or analytics)
+- Know what happened if something breaks
+
+> Route handlers respond to specific HTTP route and methods
+> app.use() register middleware and routers
 
 ---
