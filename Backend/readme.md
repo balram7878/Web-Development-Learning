@@ -301,8 +301,10 @@ Conversion -- Native -- Requires JSON.stringify() and JSON.parse()
 - Request Body (JSON): Preserves types
 
 # Middleware
+
 - middleware is a function that has access to: (res,res,next)
 - it is executed b/w when the server receives a request and send a response.
+
 1. it can modify request and response
 2. end the request-response cycle
 3. call next() to pass control to the next middleware/handler
@@ -311,13 +313,16 @@ app.use() --> middleware mounting
 app.get() and app.post() --> route handler
 
 # TCP: One Request = One Response
+
 - In HTTP over TCP, the server cannot send multiple responses to a single request.
-Once the client sends a request, the server sends one response. That request-response cycle is finished after that.
+  Once the client sends a request, the server sends one response. That request-response cycle is finished after that.
 - That’s why: You can’t call res.send() more than once.
 - If the client doesn’t receive a response (e.g., due to an error or bug), it might keep retrying (in a loop) until timeout.
 
 # Why Store Logs?
+
 > Logs help us:
+
 - Monitor user activity
 - Debug errors or bugs
 - Track API usage (for rate limiting or analytics)
@@ -327,3 +332,24 @@ Once the client sends a request, the server sends one response. That request-res
 > app.use() register middleware and routers
 
 ---
+
+# Authentication
+
+- The process of verifying a user's identity.
+
+# Authorization
+
+- the process of verifying the actions or resources a user is allowed to access.
+
+# Error codes
+
+200 -- OK -- request was successfull and the server returned the expected response
+201 -- created -- a new resource is successfully created (POST)
+400 -- bad request -- the server can't process the request due to invalid input from the client.
+401 -- unauthorized -- the user require authentication (user not logged in or invalid credential)
+403 -- forbidden -- the server understood the request but denies access
+404 -- Not found -- the requested resource does not exist on the server.
+500 -- internal server error -- server-side issue prevented to fullfilling the request.
+
+> error code provide a ***standarized error handling machanism*** b/w client and server.
+> allow developers and systems to debug issues quickly
