@@ -1,24 +1,11 @@
 const express = require("express");
-const {auth}=require("./middleware/auth")
+const { auth: Auth1, auth1: Auth2 } = require("./middleware/auth");
+const { foodItems, cart } = require("./utils/items");
 const app = express();
-
-const foodItems = [
-  { id: 1, name: "Paneer Butter Masala", category: "veg", price: 220 },
-  { id: 2, name: "Chicken Biryani", category: "non-veg", price: 350 },
-  { id: 3, name: "Masala Dosa", category: "veg", price: 120 },
-  { id: 4, name: "Mutton Rogan Josh", category: "non-veg", price: 900 },
-  { id: 5, name: "Veg Hakka Noodles", category: "veg", price: 150 },
-  { id: 6, name: "Fish Curry", category: "non-veg", price: 480 },
-  { id: 7, name: "Chole Bhature", category: "veg", price: 130 },
-  { id: 8, name: "Egg Fried Rice", category: "non-veg", price: 160 },
-  { id: 9, name: "Rajma Chawal", category: "veg", price: 140 },
-  { id: 10, name: "Butter Chicken", category: "non-veg", price: 770 },
-];
-const cart = [];
 
 app.use(express.json());
 
-app.use("/food/:token",auth)
+app.use("/food/:token", Auth1);
 
 app.get("/food/:token", (req, res) => {
   res.send(foodItems);
@@ -52,6 +39,32 @@ app.delete("/food/:token/:id", (req, res) => {
     res.status(200).send(`food with id: ${id} deleted successfully`);
   }
 });
+
+app.get("/cart", (req, res) => {
+  if (cart.length == 0) res.send("cart is empty");
+  else res.send(cart);
+});
+
+app.use("/cart/:id", Auth2);
+
+app.post("/cart/:id", (req, res) => {
+  cart.push(foodItems[req.index]);
+  res.send(`food with id: ${req.id} added successfully`);
+});
+
+app.delete("/cart/:id", (req, res) => {
+  const index = req.cartIndex;
+  const id=req.id;
+  console.log(cart,index);
+  cart.splice(index, 1);
+  console.log(cart,index);
+  res.send(`food with id: ${id} deleted successfully from the cart`);
+});
+
 app.listen(1234, () => {
   console.log("listen");
 });
+
+module.exports = {
+  foodItems,
+};
