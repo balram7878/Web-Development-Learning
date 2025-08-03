@@ -351,5 +351,71 @@ app.get() and app.post() --> route handler
 404 -- Not found -- the requested resource does not exist on the server.
 500 -- internal server error -- server-side issue prevented to fullfilling the request.
 
-> error code provide a ***standarized error handling machanism*** b/w client and server.
+> error code provide a **_standarized error handling machanism_** b/w client and server.
 > allow developers and systems to debug issues quickly
+
+---
+
+- express.json() is a buit-in middleware in express that automatically parses incoming JSON data in a streaming manner.
+- in HTTP requests data often arrives in chunks, not all at once
+- JSON.parse() can only parse data after it has been completely received as a string.
+- express.json(): -
+  > listen to the data stream coming from the client
+  > collect and assembles the chunk
+  > uses JSON.parse() internally after the complete data is received.
+  > Adds the parsed object to req.body, making it easy to access in route handlers.
+
+# Errors should be managed using:
+
+- try-catch blocks
+- Custom error-handling middleware for cleaner code in large applications.
+
+---
+
+### DATABASE
+
+# Database
+
+- A database is a physical storage system where actual data is stored in an organized and structured format.
+
+* People often use the term "database" loosely to refer to both:
+  > Database – The physical collection of data.
+  > DBMS (Database Management System) – The software used to manage and interact with that data (e.g., MySQL, MongoDB).
+
+# File System
+
+- A file system is the traditional method of storing data on disk in files and folders.
+  > Challenges with file systems:
+- Hard to search, retrieve, update, or delete data efficiently.
+- No concept of relationships between data.
+- Limited support for concurrency (multiple users accessing/modifying data).
+- No query language to filter or process data easily.
+
+# Database
+
+- A database is built on top of a file system but adds:
+- Organized storage (tables, rows, columns, indexes).
+- Support for CRUD operations (Create, Read, Update, Delete).
+- Powerful querying capabilities (SQL or NoSQL queries).
+- Data consistency, reliability, and security.
+- Concurrency handling for multiple users at once.
+
+# Why Excel Sheets Are Not Considered Full Databases?
+
+- While Excel provides a way to store and view tabular data, it cannot replace a real DBMS because:
+- Limited data storage capacity (not scalable for millions of records).
+- Lacks data types enforcement (e.g., can’t strictly enforce integers, dates, etc.).
+- Limited data integrity rules (e.g., foreign key constraints).
+- Poor handling of concurrent access (multiple users editing at once).
+- No optimized query engine for complex filtering, joins, or transactions.
+- No recovery mechanisms for data corruption or crashes.
+
+why we can't store images and videos in structures databases
+- images and videos even converted into binary format and store in DB but they are not stored 
+- there are many reasons some of them are we can't run query on binary data not even on links that provide images and videos
+- we have to implement some machine learning algorithms to search these videos that is also time consuming process 
+- and if videos are of large size their binary format also become too large
+- so we can't store images and videos in DB beucase first is we can't run query on them and second is there are too large in size
+- due to large size when we retrive a data from secondary storage to RAM it takes time and only few data is come in RAM due to large size.
+- semistructure mean it is a combination of both structeres and unstructured so metadata of videos and images are structured and actual content is unstructured and we store metadata in structured dataases and run query on it. 
+- we store these type of content on CDN, on cloud based platforms

@@ -1,4 +1,4 @@
-const { foodItems, cart } = require("../utils/items");
+const { foodItems, cart } = require("../utils/data");
 const auth = (req, res, next) => {
   const token = parseInt(req.params.token);
   if (token === 23) {
