@@ -410,12 +410,52 @@ app.get() and app.post() --> route handler
 - No optimized query engine for complex filtering, joins, or transactions.
 - No recovery mechanisms for data corruption or crashes.
 
-why we can't store images and videos in structures databases
-- images and videos even converted into binary format and store in DB but they are not stored 
-- there are many reasons some of them are we can't run query on binary data not even on links that provide images and videos
-- we have to implement some machine learning algorithms to search these videos that is also time consuming process 
-- and if videos are of large size their binary format also become too large
-- so we can't store images and videos in DB beucase first is we can't run query on them and second is there are too large in size
-- due to large size when we retrive a data from secondary storage to RAM it takes time and only few data is come in RAM due to large size.
-- semistructure mean it is a combination of both structeres and unstructured so metadata of videos and images are structured and actual content is unstructured and we store metadata in structured dataases and run query on it. 
-- we store these type of content on CDN, on cloud based platforms
+# Yes, images and videos can technically be stored in databases
+
+- They are converted into binary format (BLOB – Binary Large Object) and can be stored in database tables.
+- But in practice, this is not recommended for most systems.
+
+# Problems with storing images/videos directly in DB
+
+> Inefficient Querying
+
+- Databases are optimized for structured, textual, and relational data.
+- You cannot run SQL queries on binary data (e.g., “find images containing a cat”) directly.
+- You can only fetch them using IDs or keys, not search by content.
+- Even querying links of large media files can be slow.
+
+# Large File Size (Performance Issues)
+
+- Images and especially videos are huge in size compared to normal text data.
+  > Large BLOBs make:
+- Database backups heavy and slow.
+- Replication and synchronization between servers very costly.
+- RAM usage high, as loading these files from disk to memory is time-consuming and space-limited.
+
+# Scalability Problems
+
+- Databases are not meant to act as file storage systems.
+- Storing millions of large media files bloats the DB size, slowing down queries for everything else.
+
+# Better Approach – Metadata + External Storage
+
+- Store only the metadata (structured data) about the media files in the database:
+- File name, file type, size, upload date, URL, tags, etc.
+  > Store the actual image/video files on:
+- File systems (e.g., local storage or dedicated media server).
+- CDNs (Content Delivery Networks) for fast global delivery.
+- Cloud storage services like AWS S3, Google Cloud Storage, Azure Blob Storage.
+  > This allows:
+- Efficient searching using metadata (title, category, tags, etc.).
+- Fast file delivery via optimized storage services.
+- Reduced DB load, making queries faster and databases smaller.
+
+# Semi-structured Nature of Media Files
+
+> Media files have:
+
+- Structured data → metadata (file name, size, format, tags, upload date).
+- Unstructured data → the actual binary content (image/video pixels).
+- Storing only structured metadata in relational DB allows running queries efficiently:
+  → This fetches the video links, and files are served from CDN or cloud storage.
+---
