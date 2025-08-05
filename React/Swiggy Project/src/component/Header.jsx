@@ -11,7 +11,11 @@ export default function Header() {
                     <div className="flex justify-center items-center gap-12">
                         <a href="https://www.swiggy.com/corporate/" className="outline-none text-white font-bold text-xl">Swiggy Corporate</a>
                         <a href="https://partner.swiggy.com/login#/swiggy" className="outline-none text-white font-bold text-xl">Partner with us</a>
-                        <button className="border border-white rounded-xl h-[55px] w-[150px] text-white font-bold text-lg">Get the app</button>
+                        <button onClick={()=>{
+                            document.getElementById("app-qr").scrollIntoView({
+                                behavior:"smooth",
+                            })
+                        }} className="border cursor-pointer border-white rounded-xl h-[55px] w-[150px] text-white font-bold text-lg">Get the app</button>
                         <button className="text-white bg-black rounded-xl h-[55px] w-[140px] font-bold text-xl">Sign in</button>
                     </div>
                 </div>
