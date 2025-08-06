@@ -458,4 +458,59 @@ app.get() and app.post() --> route handler
 - Unstructured data → the actual binary content (image/video pixels).
 - Storing only structured metadata in relational DB allows running queries efficiently:
   → This fetches the video links, and files are served from CDN or cloud storage.
+
 ---
+
+# Challenges with SQL Databases at Large Scale
+
+- SQL databases are relational and store data in structured tables with rows and columns.
+- When applications have millions of users and billions of records, some problems arise:
+- Adding a new column or table requires schema changes across all records, which can be time-consuming and error-prone.
+- Large normalized data may be spread across multiple tables, requiring expensive JOIN operations to retrieve a single user's data.
+  > Scaling horizontally (adding more servers) is difficult because:
+- Different parts of a single user's data may exist on different servers.
+- Performing cross-server joins becomes slow and inefficient.
+- SQL databases scale vertically (by adding more CPU/RAM to a single server) better than horizontally.
+
+# Normalization in SQL
+
+- Normalization is the process of organizing data into multiple tables to reduce redundancy and improve data consistency.
+  > Data is linked using:
+- Primary keys – unique identifiers for each record in a table.
+- Foreign keys – links between tables.
+
+# Importance of SQL (ACID Properties)
+
+- SQL databases ensure ACID compliance, making them highly reliable for transactions:
+- Atomicity → All steps of a transaction succeed or none do.
+- Consistency → Database remains valid after each transaction.
+- Isolation → Concurrent transactions don’t interfere with each other.
+- Durability → Once a transaction is committed, it persists even after crashes.
+- Because of ACID guarantees, financial institutions and banking systems prefer SQL DBs.
+
+# NoSQL Databases (MongoDB)
+
+> MongoDB is a document-based NoSQL database:
+
+- Stores data as JSON-like documents (BSON format internally).
+- Collections = equivalent to tables in SQL.
+- Documents = equivalent to rows in SQL.
+- Fields = equivalent to columns.
+  > Key benefits:
+- Schema-less design → Flexible structure; adding new fields doesn't affect existing documents.
+- No joins or normalization needed → Each document can hold all related data for a single entity.
+- Easy horizontal scaling (scale-out) using sharding, where data is distributed across multiple servers efficiently.
+
+# Limitations of NoSQL
+
+> NoSQL databases often sacrifice strict ACID compliance for:
+
+- Flexibility
+- Speed
+- Scalability
+
+> They usually follow BASE properties:
+
+- Basically Available
+- Soft state
+- Eventual consistency
