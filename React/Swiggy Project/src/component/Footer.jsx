@@ -8,7 +8,7 @@ export default function Footer() {
             <h2 className="font-bold text-3xl mb-8">Cities with food delivery</h2>
             <div className="flex w-full gap-4 flex-wrap justify-start">
                 {citiesWithFoodDelivery.map((e, index) => (
-                    <a key={index} href={e.link} className="border-gray-400 h-18 w-72 border-[1px] flex items-center justify-center rounded-2xl p-2">{e.text}</a>
+                    <a target="_blank" key={index} href={e.link} className="border-gray-400 h-18 w-72 border-[1px] flex items-center justify-center rounded-2xl p-2">{e.text}</a>
                 ))}
             </div>
         </div>
@@ -17,7 +17,7 @@ export default function Footer() {
             <h2 className="font-bold text-3xl mb-8">Cities with grocery delivery</h2>
             <div className="flex w-full gap-4 flex-wrap justify-start">
                 {citiesWithGroceriesDelivery.map((e, index) => (
-                    <a key={index} href={e.link} className="border-gray-400 h-18 w-72 border-[1px] flex items-center justify-center rounded-2xl p-2">{e.text}</a>
+                    <a target="_blank" key={index} href={e.link} className="border-gray-400 h-18 w-72 border-[1px] flex items-center justify-center rounded-2xl p-2">{e.text}</a>
                 ))}
             </div>
         </div>
@@ -32,13 +32,13 @@ export default function Footer() {
           <h2 className="font-bold text-2xl text-gray-500">
             For better experience, download the Swiggy app now
           </h2>
-          <a href="https://apps.apple.com/in/app/swiggy-food-instamart-dineout/id989540920?referrer=utm_source%3Dswiggy%26utm_medium%3Dhomepage">
+          <a target="_blank" href="https://apps.apple.com/in/app/swiggy-food-instamart-dineout/id989540920?referrer=utm_source%3Dswiggy%26utm_medium%3Dhomepage">
             <img
               src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200,h_65/icon-AppStore_lg30tv"
               className="transition-transform duration-300 ease-in hover:scale-110 cursor-pointer"
             ></img>
           </a>
-          <a href="https://play.google.com/store/apps/details?id=in.swiggy.android&referrer=utm_source%3Dswiggy%26utm_medium%3Dheader&pli=1">
+          <a target="_blank" href="https://play.google.com/store/apps/details?id=in.swiggy.android&referrer=utm_source%3Dswiggy%26utm_medium%3Dheader&pli=1">
             <img
               src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200,h_65/icon-GooglePlay_1_zixjxl"
               className="transition-transform duration-300 ease-in hover:scale-110 cursor-pointer"

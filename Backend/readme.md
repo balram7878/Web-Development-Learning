@@ -514,3 +514,9 @@ app.get() and app.post() --> route handler
 - Basically Available
 - Soft state
 - Eventual consistency
+
+---
+
+# Internal of MongoDB
+
+- address of element in array = address of first element (offset address) + index of element * size of data type

@@ -9,7 +9,7 @@ return<>
 <div className="flex w-[100%] gap-10 flex-nowrap space-x-10">
    {
     FoodData.map((e,index)=>{
-       return <a key={index} className="block flex-shrink-0" href={e.action.link}><img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/"+e.imageId}  className="h-[220px] w-[170px]"  /></a>
+       return <a  target="_blank" key={index} className="block flex-shrink-0" href={e.action.link}><img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/"+e.imageId}  className="h-[220px] w-[170px]"  /></a>
 
     })
    }
@@ -22,7 +22,7 @@ return<>
     {
       
    groceries.map((e,index)=>{
-  return <a key={index} href={e.action.link} className="flex flex-col flex-shrink-0 items-center text-center"><img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/"+e.imageId}  className="h-[210px] w-[190px] "  />{e.action.text}</a>
+  return <a target="_blank" key={index} href={e.action.link} className="flex flex-col flex-shrink-0 items-center text-center"><img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/"+e.imageId}  className="h-[210px] w-[190px] "  />{e.action.text}</a>
   })
     }
 </div>
@@ -37,7 +37,7 @@ return<>
 
     {
       restaurant.map((e,index)=>{
-return <a key={index} href={`https://www.swiggy.com/restaurants/${e.info.id}/dineout`}  className="flex flex-col flex-shrink-0 items-center text-center">
+return <a target="_blank" key={index} href={`https://www.swiggy.com/restaurants/${e.info.id}/dineout`}  className="flex flex-col flex-shrink-0 items-center text-center">
 
       <div className="rounded-2xl  w-[400px] h-[450px] border-1 text-[16px] border-gray-400 ">
         <div className="h-[210px]  rounded-2xl">

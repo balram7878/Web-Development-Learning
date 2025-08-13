@@ -296,3 +296,15 @@ index.js
 # useDispatch
 
 - useDispatch is a hook in react-redux that give you access to the dispatch function so you send the actions to the store.
+
+---
+
+# CORS (Cross-Origin Resourse Sharing)
+
+- It is a security feature in a web browser that prevent a web page access sensitive information from the server of different origin.
+- origin header : protocol + domain + port
+- when you make a request to the server it compare this origin against the origin it allows, if your origin doesn't allowed then it blocks the request and doesn't include the right **Access-Control-Allow-Origin** 
+- Browser have a same origin policy (SOP) to prevent malicious website from reading sensitive data from other sites.
+- so cors is enforced by browsers not by internet or servers.
+
+
