@@ -517,6 +517,31 @@ app.get() and app.post() --> route handler
 
 ---
 
-# Internal of MongoDB
+# MongoDB
 
-- address of element in array = address of first element (offset address) + index of element * size of data type
+- a cluster is just a group of MonogDB servers that work together to store your data
+- your database environment deployed at cloud (Atlas)
+
+# Compass
+
+- it is a GUI based tool that let you connect with your DB cluster and managed it visually.
+  > Features:
+- Browse databases & collections.
+- Run queries without writing shell commands.
+- Insert, update, delete documents.
+- Visualize schema and indexes.
+
+# Schema
+
+- a schema is the structure/blueprint of how data is organized in DB.
+  > It defines:
+- Tables/collections
+- Fields (columns)
+- Field types (string, integer, date, etc.)
+- Relationships (foreign keys, constraints)
+
+> In SQL
+* You must insert data following this structure (id, name, age, email).
+* If you try to add a row without name → error.
+* Schema is strict.
+
