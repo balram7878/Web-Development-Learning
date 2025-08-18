@@ -5,7 +5,7 @@ async function main() {
 
     //connect with cluster and create database
   await mongoose.connect(
-    "mongodb+srv://bmeena97562:9928296711@cluster0.uwrialx.mongodb.net/BookStore"
+    
   );
 
 
