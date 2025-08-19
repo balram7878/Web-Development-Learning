@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build":"npx parcel index.html"
+    "start": "npx parcel index.html",
+    "build": "npx parcel build index.html"
   },
   "keywords": [],
   "author": "",
@@ -13,10 +13,13 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "@tailwindcss/cli": "^4.1.11",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-redux": "^9.2.0",
-    "react-router": "^7.7.0",
+    "react-router": "^7.8.1",
     "tailwind-scrollbar-hide": "^4.0.0",
     "tailwindcss": "^4.1.11"
   },

@@ -1,3 +1,6 @@
+import {BrowserRouter, Routes, Route, Link,useNavigate} from "react-router";
+import FoodDelivery from "./FoodDelivery";
+
 export default function Header() {
     return (
         <>
@@ -62,10 +65,21 @@ export default function Header() {
 
                 {/* Bottom Images */}
                 <div className="flex justify-center items-center absolute bottom-10 left-1/2 transform -translate-x-1/2 gap-4">
-                   <a target="_blank" rel="noopener noreferrer" className="block w-[400px] h-[350px]" href="https://www.swiggy.com/restaurants"> <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/MERCHANDISING_BANNERS/IMAGES/MERCH/2024/7/23/ec86a309-9b06-48e2-9adc-35753f06bc0a_Food3BU.png" className="w-[400px] h-[350px]" /></a>
-                   <a target="_blank" rel="noopener noreferrer" className="block w-[400px] h-[350px]" href="https://www.swiggy.com/instamart?entryId=1234&entryName=mainTileEntry4&v=1">    <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/MERCHANDISING_BANNERS/IMAGES/MERCH/2024/7/23/b5c57bbf-df54-4dad-95d1-62e3a7a8424d_IM3BU.png" className="w-[400px] h-[350px]" /></a>
+
+<BrowserRouter>
+<Link to="/restaurants" className="block w-[400px] h-[350px]" onClick={(e)=>{
+e.preventDefault();
+window.open("/restaurants","_blank");
+}}><img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/MERCHANDISING_BANNERS/IMAGES/MERCH/2024/7/23/ec86a309-9b06-48e2-9adc-35753f06bc0a_Food3BU.png" className="w-[400px] h-[350px]" /></Link>
+<Routes>
+    <Route path="/restaurants" element={<FoodDelivery/>}></Route>
+</Routes>
+</BrowserRouter>
                  
-                 <a target="_blank" rel="noopener noreferrer" className="block w-[400px] h-[350px]" href="https://www.swiggy.com/dineout">    <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/MERCHANDISING_BANNERS/IMAGES/MERCH/2024/7/23/b6d9b7ab-91c7-4f72-9bf2-fcd4ceec3537_DO3BU.png" className="w-[400px] h-[350px]" /></a>
+
+
+                   <a target="_blank" rel="noopener noreferrer" className="block w-[400px] h-[350px]" href="https://www.swiggy.com/instamart?entryId=1234&entryName=mainTileEntry4&v=1">    <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/MERCHANDISING_BANNERS/IMAGES/MERCH/2024/7/23/b5c57bbf-df54-4dad-95d1-62e3a7a8424d_IM3BU.png" className="w-[400px] h-[350px]" /></a>
+                   <a target="_blank" rel="noopener noreferrer" className="block w-[400px] h-[350px]" href="https://www.swiggy.com/dineout">    <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/MERCHANDISING_BANNERS/IMAGES/MERCH/2024/7/23/b6d9b7ab-91c7-4f72-9bf2-fcd4ceec3537_DO3BU.png" className="w-[400px] h-[350px]" /></a>
                    
                 </div>
                     </div>

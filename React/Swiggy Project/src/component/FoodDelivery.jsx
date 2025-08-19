@@ -1,48 +1,59 @@
-import { useEffect,useState } from "react"
-// const response=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.730231845869277&lng=76.77189049002534&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING?");
-// const data=await response.json();
+import { useEffect, useState } from "react";
 
+export default function FoodDelivery() {
+  const [data, setData] = useState([]);
 
+useEffect(() => {
+  async function fetchData() {
+    try {
+      const response = await fetch("http://localhost:5678/restaurants");
+      const obj = await response.json();
 
-export default function FoodDelivery(){
-const [data,setData]=useState([]);
+      console.log(obj);
 
-useEffect(()=>{
-    async function fetchData() {
-        const proxy="https://cors-anywhere.herokuapp.com/";
-        const API="https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.730231845869277&lng=76.77189049002534&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING?";
-        const response=await fetch(proxy+API);
-        const obj=await response.json();
-        setData(obj.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+      const restaurants =
+        obj?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+
+      setData(restaurants);
+    } catch (err) {
+      console.error("Error fetching data:", err);
     }
-    fetchData();
-},[]);
+  }
 
+  fetchData();
+}, []);
 
-    return<>
-    
- <div className="flex justify-center items-center">
-<div className="flex justify-center items-center flex-wrap gap-10 p-10 w-[90%]">
-    {
-        data.map((e,index)=>{
-            return <img  key={index} className="w-[320px] h-[210px] rounded-xl" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+e.info.cloudinaryImageId} />
-
-        })
-    }
-  
-</div>
-<div>
-    <h2></h2>
-    <p></p>
-    <p></p>
-    <p></p>
-</div>
-
- </div>
-    
-    </>
-
+  return (
+    <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center flex-wrap gap-10 p-10 w-[90%]">
+        {data.map((e, index) => {
+          return (
+            <div
+              key={index}
+              className="w-[320px] rounded-xl shadow-lg overflow-hidden"
+            >
+              <img
+                className="w-full h-[210px] object-cover"
+                src={
+                  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
+                  e.info.cloudinaryImageId
+                }
+                alt={e.info.name}
+              />
+              <div className="p-3">
+                <h2 className="font-bold text-lg">{e.info.name}</h2>
+                <p className="text-gray-600 text-sm">
+                  {e.info.cuisines?.join(", ")}
+                </p>
+                <p className="text-yellow-600 font-semibold">
+                  ⭐ {e.info.avgRating}
+                </p>
+                <p className="text-gray-500 text-sm">{e.info.areaName}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
-
-
-
