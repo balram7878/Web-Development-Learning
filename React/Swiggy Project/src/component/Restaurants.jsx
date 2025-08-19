@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
-export default function FoodDelivery() {
+export default function Restaurants() {
   const [data, setData] = useState([]);
 
 useEffect(() => {
@@ -23,14 +24,17 @@ useEffect(() => {
   fetchData();
 }, []);
 
+if(data.length===0)
+  return <Shimmer/>
+
   return (
     <div className="flex justify-center items-center">
-      <div className="flex justify-center items-center flex-wrap gap-10 p-10 w-[90%]">
+      <div className="flex justify-center items-center flex-wrap gap-10 p-10 w-[90%]  ">
         {data.map((e, index) => {
           return (
             <div
               key={index}
-              className="w-[320px] rounded-xl shadow-lg overflow-hidden"
+              className="w-[320px] rounded-xl shadow-lg overflow-hidden transform transition duration-200 hover:scale-95"
             >
               <img
                 className="w-full h-[210px] object-cover"

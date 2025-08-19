@@ -1,4 +1,4 @@
-import {citiesWithFoodDelivery,citiesWithGroceriesDelivery} from "./utils/FoodData";
+import {citiesWithFoodDelivery,citiesWithGroceriesDelivery} from "../utils/FoodData";
 export default function Footer() {
   return (
     <>

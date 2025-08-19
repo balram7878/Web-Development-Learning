@@ -1,4 +1,4 @@
-import {FoodData,groceries,restaurant} from "./utils/FoodData"
+import {FoodData,groceries,restaurant} from "../utils/FoodData"
 export default function Body(){
 
 return<>
