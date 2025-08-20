@@ -27,9 +27,10 @@ app.get("/restaurants", (req, res) => {
       fetchData(url,res);
 });
 
-app.get("/restaurants/food",  (req, res) => {
+app.get("/city/chandigarh/:id",  (req, res) => {
  
-    const url=  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=30.730231845869277&lng=76.77189049002534&restaurantId=41350&catalog_qa=undefined&submitAction=ENTER";
+  const id=req.params.id;
+    const url=  `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=30.730231845869277&lng=76.77189049002534&restaurantId=${id}`;
     fetchData(url,res);
 });
 

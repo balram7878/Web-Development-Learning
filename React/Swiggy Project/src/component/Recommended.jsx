@@ -1,11 +1,17 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router";
+
 
 export default function FoodCard() {
+
+  
+const {id}=useParams();
+
   const [data, setData] = useState([]);
   useEffect(() => {
     (async () => {
       try {
-        const response = await fetch("http://localhost:5678/restaurants/food");
+        const response = await fetch(`http://localhost:5678/city/chandigarh/${id}`);
         const card = await response.json();
         setData(
           card?.data.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]
@@ -21,7 +27,7 @@ export default function FoodCard() {
    {
     data.map((item)=>{
         const info=item?.card?.info;
-         return <div kay={info?.id} className="flex items-start justify-between border-b gap-6 border-gray-200 p-4">
+         return <div key={info?.id} className="flex items-start justify-between border-b gap-6 border-gray-200 p-4">
 
       <div className="flex flex-col space-y-1">
 

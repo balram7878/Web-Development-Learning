@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import {Link} from "react-router";
 
 export default function Restaurants() {
   const [data, setData] = useState([]);
@@ -32,8 +33,8 @@ if(data.length===0)
       <div className="flex justify-center items-center flex-wrap gap-10 p-10 w-[90%]  ">
         {data.map((e, index) => {
           return (
+         <Link key={e?.info?.id} to={"/city/chandigarh/"+e.info.id}>
             <div
-              key={index}
               className="w-[320px] rounded-xl shadow-lg overflow-hidden transform transition duration-200 hover:scale-95"
             >
               <img
@@ -55,6 +56,7 @@ if(data.length===0)
                 <p className="text-gray-500 text-sm">{e.info.areaName}</p>
               </div>
             </div>
+         </Link>
           );
         })}
       </div>
