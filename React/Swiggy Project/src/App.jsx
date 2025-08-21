@@ -1,6 +1,6 @@
 import Home from "./component/Home";
 import Restaurants from "./component/Restaurants";
-import Recommended from "./component/Recommended"; 
+import Items from "./component/Items"; 
 import { BrowserRouter, Routes, Route } from "react-router";
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/restaurants" element={<Restaurants />}></Route>
-          <Route path="/city/chandigarh/:id" element={<Recommended/>}></Route>
+          <Route path="/city/chandigarh/:id" element={<Items/>}></Route>
         </Routes>
       </BrowserRouter>
     </>

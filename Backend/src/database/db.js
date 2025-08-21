@@ -1,9 +1,7 @@
 const { MongoClient } = require('mongodb');
 
-
 const url = '';
 const client = new MongoClient(url);
-
 
 const dbName = 'User';
 
@@ -16,10 +14,6 @@ async function main() {
 
 const findResult = await collection.find({});
 console.log('Found documents =>', findResult);
-
-
-
-
   return 'done.';
 }
 
