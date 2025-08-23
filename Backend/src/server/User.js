@@ -10,20 +10,33 @@ app.get("/get/users", async (req, res) => {
     const result = await User.find();
     res.send(result);
   } catch (err) {
-    res.status(500).json({error:err.message});
+    res.status(500).json({ error: err.message });
   }
 });
 
-app.post("/add/user",async (req,res)=>{
-    try{
-       await User.create(req.body);
-        res.send("User added successfully");
-    }catch(err){
-        res.status(500).json({error:"User not added: "+err.message});
-    }
-})
+app.post("/add/user", async (req, res) => {
+  const mandatoryFields = ["name", "age", "gender", "email"];
+  const isAllowed=mandatoryFields.every(e=>Object.keys(req.body).includes(e));
+  if(!isAllowed)
+    throw new Error("mandatory fields are missing");
+  try {
+    await User.create(req.body);
+    res.send("User added successfully");
+  } catch (err) {
+    res.status(500).json({ error: "User not added: " + err.message });
+  }
+});
 
-
+app.patch("/update/user/:id", async (req, res) => {
+  const id = req.params.id;
+  const details = req.body;
+  try {
+    await User.findByIdAndUpdate(id, details, { runValidators: true });
+    res.send(`User with id: ${id} updated successfully.`);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+});
 
 main()
   .then(() => {

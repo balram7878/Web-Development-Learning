@@ -5,7 +5,34 @@
 - before nodeJS, servers were build using languages like c, c++, php, java. Google created v8 engine which translate your JS code into machine code and v8 is written in C++ and that's how JS is used in backend.
 - v8 can be embedded into any c++ aplication, this mean we can embedded (integrate) v8 engine into our c++ program to run and understand JS code. Just like NodeJS does, it is also a c++ application, it embeds v8 and execute JS code.
 
-* How NodeJS run code: -
+# npm and npx:
+
+> npm
+
+- npm is a node package manager that let's you download and install packages from the central repository
+- it downloads packages into your project’s node_modules folder and adds it to package.json.
+  > npx
+- npx is a node package eXcute, it is used to run npm packages without installing them globally.
+- npx download it temporarily, runs it and delete it.
+- npx is also used for run binaries of existing packages.
+
+> Why use npx even if installed?
+
+> Because without npx, you’d need to either:
+
+1. Run node_modules/.bin/parcel index.html manually, OR
+
+- To run the binary manually, you would do: **node_modules/.bin/parcel index.html**Kz
+- Instead, npx runs it for you automatically: **npx parcel index.html**
+
+2. Install it globally with npm install -g parcel and run parcel index.html.
+
+- Using npx avoids both headaches.
+
+**So, npm install and npx run**
+**_You installed Parcel with npm, but ran it with npx because it saves you from typing long paths or installing globally._**
+
+- How NodeJS run code: -
 
 1. Parsing JS code:
 
@@ -464,7 +491,7 @@ app.get() and app.post() --> route handler
 # Challenges with SQL Databases at Large Scale
 
 - SQL databases are relational and store data in structured tables with rows and columns.
-- When applications have millions of users and billions of records, some problems arise:
+  > When applications have millions of users and billions of records, some problems arise:
 - Adding a new column or table requires schema changes across all records, which can be time-consuming and error-prone.
 - Large normalized data may be spread across multiple tables, requiring expensive JOIN operations to retrieve a single user's data.
   > Scaling horizontally (adding more servers) is difficult because:
@@ -541,10 +568,88 @@ app.get() and app.post() --> route handler
 - Relationships (foreign keys, constraints)
 
 > In SQL
-* You must insert data following this structure (id, name, age, email).
-* If you try to add a row without name → error.
-* Schema is strict.
+
+- You must insert data following this structure (id, name, age, email).
+- If you try to add a row without name → error.
+- Schema is strict.
 
 ---
 
+# MongoDB
 
+- MondoDB is a NoSQL DB that store data in document format (JSON/BSON like).
+- so to talk with the DB you need a programming language and a driver or a library for that language.
+- you interact with mongoDB using MongoDB Node.js drivers (library) - JS library provide low level APIs to connect with the DB, compass (GUI - based tool) or Mongo shell commands, with the help of these you connect your Node.js application to a MongoDB database using.
+
+# Mongoose
+
+- A Node.js ODM (Object data modeling) sometime also called Object Document Mapper library for MongoDB.
+- provide higher level abstraction over MongoDB Node.js driver
+- Provides a higher-level abstraction over MongoDB.
+- Lets you define schemas for collections.
+- Handles data validation automatically.
+- Provides powerful query building features.
+
+---
+
+# Security and Privacy
+
+> Security is about protecting data to unauthorized access, attacts and leaks.
+
+- Threat: Hackers, malware, data breaches.
+- Solution: Firewalls, encryption, authentication.
+  > privacy is about controlling who has access to your personal data and how it is used.
+- Threat: Misuse of data by companies, governments, etc.
+- Solution: Policies, laws (GDPR), user permissions, consent.
+
+  > > Imagine you use a health app:
+
+- Security: The app uses encryption so hackers can’t steal your health data.
+- Privacy: Even though the data is secure, the app company itself might sell your health data to advertisers without asking you. That’s a privacy issue, not a security one.
+
+**Security is about protection of data and Privacy is about control over personal data**
+
+---
+
+# Encryption & Decryption
+
+- Encryption = Converting plain text (e.g., a password) into unreadable text (ciphertext) using a key.
+- Decryption = Converting the encrypted text back to the original text using the same key (or a related key).
+
+1. Symmetric key cryptography :- encrypt and decrypt using the same key
+2. Asymmetric key cryptography :- encrypt and decrypt using the separate keys
+
+# Hashing vs Encryption
+
+Feature --- Encryption --- Hashing (e.g., bcrypt)
+Reversible? --- Yes, can be decrypted --- No, one-way process
+Key needed? --- Yes (for encryption/decryption) --- No key required
+Usage --- Messages, files, confidential data --- Passwords (so even admin can't see real password)
+
+For passwords → Hashing is preferred, not encryption.
+
+# Salting
+
+- If two people have the same password and you hash both passwords → Both hashes will be identical.
+- That’s risky because hackers can use rainbow tables (precomputed hash dictionaries) to crack them.
+
+* Solution → Salting:
+
+- A random string (salt) is added to the password before hashing.
+- Even if passwords are the same, the hashes will be different.
+
+# Bcrypt
+
+- Bcrypt is a password hashing library that makes hashes secure and slow enough to resist brute-force attacks.
+  > Steps in bcrypt:
+- Generate Salt → Bcrypt generates a random salt for each password.
+- Combine Password + Salt → Makes each hash unique.
+- Hash with Work Factor (Cost) → Higher cost = slower hashing = harder for attackers.
+- Store Hash + Salt together in DB.
+  > When user logs in, bcrypt repeats the process with the given password and compares hashes.
+
+# Why bcrypt is Secure
+
+- Salt ensures uniqueness of hashes.
+- Cost factor makes hashing intentionally slow → prevents attackers from trying millions of guesses quickly.
+- One-way hashing → even if DB is leaked, original password can’t be found.
