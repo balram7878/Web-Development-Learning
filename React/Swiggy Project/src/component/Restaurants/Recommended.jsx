@@ -1,31 +1,51 @@
 export default function Recommended({ itemCards }) {
-    // console.log(itemCards)
   return (
     <>
-     {
-        itemCards?.length>0?(itemCards.map((e) => {
-            const info=e?.card?.info;
-            return (<>
-                <div className="flex justify-between w-[100%] items-center gap-10 " key={info?.id}>
-                        <div className="flex gap-2 flex-col" key={459439532345}>
-                            <h1 className="font-bold text-xl">{info.name}</h1>
-                            <h2>₹{info?.price/100}</h2>
-                            <h3 className="font-bold text-green-600">{info?.ratings?.aggregatedRating?.rating} ({info?.ratings?.aggregatedRating?.ratingCountV2})</h3>
-                            <p className="text-gray-400 text-lg">{info.description}</p>
-                        </div>
-                        <div className="text-center flex gap-1 flex-col justify-center items-center" key={459234395345}>
-                            <img src={"https://media-assets.swiggy.com/"+info.imageId} className="w-51 h-45" />
-                            <button className="text-green-600 font-bold text-xl border-2 rounded-xl w-30 h-12">ADD</button>
-                            <h3>Customisable</h3>
-                        </div>
-                    </div>
-                    <hr key={info?.id+"jjj"} className="w-[100%] h-2 text-gray-400 m-5"></hr>
-                    </>
-            )
-        }
-    )
-        ):<p>Data is Loading....</p>
-    }
+      {itemCards?.length > 0 ? (
+        itemCards.map((e) => {
+          const info = e?.card?.info;
+          return (
+            <div
+              key={info?.id}
+              className="w-full max-w-4xl mx-auto bg-white shadow-md rounded-xl p-6 mb-8 transition-transform hover:scale-[1.01] hover:shadow-lg"
+            >
+              <div className="flex justify-between items-center gap-6">
+          
+                <div className="flex flex-col gap-2 flex-1">
+                  <h1 className="font-semibold text-2xl text-gray-800">{info.name}</h1>
+                  <h2 className="text-lg font-medium text-gray-700">
+                    ₹{info?.defaultPrice ? info?.defaultPrice / 100 : info?.price / 100}
+                  </h2>
+                  {info?.ratings?.aggregatedRating?.rating && (
+                    <h3 className="font-semibold text-green-600 text-sm">
+                      ⭐ {info.ratings.aggregatedRating.rating} (
+                      {info.ratings.aggregatedRating.ratingCountV2})
+                    </h3>
+                  )}
+                  <p className="text-gray-500 text-sm leading-relaxed">
+                    {info.description}
+                  </p>
+                </div>
+
+       
+                <div className="flex flex-col items-center justify-center gap-3 w-40">
+                  <img
+                    src={"https://media-assets.swiggy.com/" + info.imageId}
+                    alt={info.name}
+                    className="w-32 h-32 object-cover rounded-lg shadow-md"
+                  />
+                  <button className="w-32 py-2 px-4 bg-green-500 hover:bg-green-600 transition rounded-lg text-white font-semibold text-sm shadow-md">
+                    + ADD
+                  </button>
+                  <h3 className="text-xs text-gray-500 italic">Customisable</h3>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      ) : (
+        <p className="text-center text-gray-500 text-lg font-medium mt-10">Data is Loading...</p>
+      )}
     </>
   );
 }

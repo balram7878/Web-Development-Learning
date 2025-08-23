@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import Recommended from "./Restaurants/Recommended";
-// import TopPicks from "./Restaurants/TopPicks";
 
 export default function FoodCard() {
   const { id } = useParams();
-
   const [data, setData] = useState([]);
-  const [isOpen, setOpen] = useState(true);
+  const [openSections, setOpenSections] = useState({});
 
   useEffect(() => {
     (async () => {
@@ -18,9 +16,11 @@ export default function FoodCard() {
         const card = await response.json();
 
         const arr =
-          card?.data.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+          card?.data.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards || [];
 
-        const filterData = arr.filter((item) => "title" in item?.card?.card);
+        const filterData = arr.filter(
+          (item) => "title" in item?.card?.card
+        );
 
         setData(filterData || []);
       } catch (err) {
@@ -29,48 +29,40 @@ export default function FoodCard() {
     })();
   }, [id]);
 
-  if (!isOpen) {
-    return (
-      <div
-        key={459439345}
-        className="w-[60%] flex justify-center items-center flex-col m-auto"
-      >
-        {data.map((e) => {
-          return (
-            <div
-              key={e?.card?.card?.title}
-              className="flex justify-center items-center w-[100%] flex-col"
-            >
-              <h1 className="font-bold text-3xl relative right-102">
-                {e?.card?.card?.title}
-              </h1>
-              <button onClick={() => setOpen(true)}>⌄</button>
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
+
+  const toggleSection = (index) => {
+    setOpenSections((prev) => ({
+      ...prev,[index]: !prev[index],
+    }));
+  };
 
   return (
-    <div
-      key={4594395}
-      className="w-[60%] flex justify-center items-center flex-col m-auto"
-    >
-      {data.map((e) => {
-        return (
-          <div
-            key={e?.card?.card?.title}
-            className="flex justify-center items-center w-[100%] flex-col"
-          >
-            <h1 className="font-bold text-3xl relative right-102">
+    <div className="w-[80%] max-w-5xl mx-auto flex flex-col items-center py-10 gap-12">
+      {data.map((e, i) => (
+        <div
+          key={e?.card?.card?.title || i}
+          className="w-full flex flex-col gap-6  p-4"
+        >
+          <div className="flex justify-between items-center cursor-pointer">
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 border-b pb-2 flex-1">
               {e?.card?.card?.title}
             </h1>
-            <button onClick={() => setOpen(false)}>˄</button>
-            <Recommended itemCards={e?.card?.card?.itemCards} />
+            <button
+              className="text-3xl px-3 select-none"
+              onClick={() => toggleSection(i)}
+              aria-label={`Toggle ${e?.card?.card?.title}`}
+            >
+              {openSections[i] ? "▲" : "▼"}
+            </button>
           </div>
-        );
-      })}
+
+          {openSections[i] && (
+            <div className="mt-4">
+              <Recommended itemCards={e?.card?.card?.itemCards} />
+            </div>
+          )}
+        </div>
+      ))}
     </div>
   );
 }
