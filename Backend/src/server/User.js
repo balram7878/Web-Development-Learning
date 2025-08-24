@@ -1,6 +1,8 @@
 const express = require("express");
 const main = require("../database/UserDB");
 const User = require("../database/models/User");
+const ValidateUser = require("../utils/ValidateUser");
+const bcrypt = require("bcrypt");
 
 const app = express();
 app.use(express.json());
@@ -15,15 +17,28 @@ app.get("/get/users", async (req, res) => {
 });
 
 app.post("/add/user", async (req, res) => {
-  const mandatoryFields = ["name", "age", "gender", "email"];
-  const isAllowed=mandatoryFields.every(e=>Object.keys(req.body).includes(e));
-  if(!isAllowed)
-    throw new Error("mandatory fields are missing");
+  ValidateUser(req.body);
+  req.body.password = await bcrypt.hash(req.body.password, 10);
   try {
     await User.create(req.body);
     res.send("User added successfully");
   } catch (err) {
     res.status(500).json({ error: "User not added: " + err.message });
+  }
+});
+
+app.post("/login", async (req, res) => {
+  
+const  {email,password}=req.body;
+  try {
+    const user = await User.findOne({email});
+    if (!user) throw new Error("invalid credentials");
+    const isMatch=await bcrypt.compare(password, user.password);
+    if (!isMatch)
+      throw new Error("invalid credentials");
+    res.json({id:user.id,email:user.email,name:user.name});
+  } catch (err) {
+    res.status(400).json({ error: err.message });
   }
 });
 

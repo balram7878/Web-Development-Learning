@@ -611,13 +611,55 @@ app.get() and app.post() --> route handler
 
 ---
 
+# Digital Signature
+
+- it is like an electronic stamp or seal that proves:
+
+1. the message came from the real sender (authentication)
+2. the message was not changed on the way (integrity)
+3. The sender can't deny sending it (non-repudiation)
+
+> How digital signature work
+
+- instead of encrypting the whole message, we encrypt a hash of the message with the sender's private key
+
+1. Sender creates a hash of the message (e.g., using SHA-256).
+2. Sender encrypts the hash with their private key → This is the digital signature.
+3. Receiver gets:
+
+- The original message
+- The digital signature
+
+4. Receiver decrypts the signature using the sender’s public key to get the hash.
+5. Receiver also computes the hash of the message they got.
+6. If both hashes match → message is authentic & unchanged.
+
 # Encryption & Decryption
 
 - Encryption = Converting plain text (e.g., a password) into unreadable text (ciphertext) using a key.
 - Decryption = Converting the encrypted text back to the original text using the same key (or a related key).
 
-1. Symmetric key cryptography :- encrypt and decrypt using the same key
-2. Asymmetric key cryptography :- encrypt and decrypt using the separate keys
+> Symmetric Encryption
+
+- one single key is required for both encryption and decryption
+  > Asymmetric key cryptography
+- private key: - used for encryption
+- public key: - used for decryption
+
+> > Confidentiality → public → private.
+> > Authenticity → private → public.
+
+# Public and Private Key
+
+- private key: kept secret by the owner
+- public key: shared with everyone
+
+* what is encrypted with one can be decrypted only with the other.
+
+### Authenticity + Confindentiality
+
+- first, encrypt the message with receiver's public key so only receiver can decrypt it with own private key. (confidentiality)
+- sign the hash with sender's private key -> so receiver decrypt it wiht sender's public key (authenticity)
 
 # Hashing vs Encryption
 
@@ -627,6 +669,8 @@ Key needed? --- Yes (for encryption/decryption) --- No key required
 Usage --- Messages, files, confidential data --- Passwords (so even admin can't see real password)
 
 For passwords → Hashing is preferred, not encryption.
+
+---
 
 # Salting
 
