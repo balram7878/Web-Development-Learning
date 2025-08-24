@@ -6,6 +6,8 @@ export default function FoodCard() {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [openSections, setOpenSections] = useState({});
+    const [isVegOn, setVegOn] = useState(false);
+     const [isNonVegOn, setNonVegOn] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -41,10 +43,27 @@ export default function FoodCard() {
 
   return (
     <div className="w-[80%] max-w-5xl mx-auto flex flex-col items-center py-10 gap-12 ">
-      <div className="flex justify-center items-center gap-5 relative right-98 top-10">
-      <div className="w-25 h-10 rounded-3xl border-1 border-gray-400"></div>
-         <div className="w-25 h-10 rounded-3xl border-1 border-gray-400">fld</div>
-      </div>
+      <div className="flex justify-center items-center gap-5 relative right-104 top-10">
+   <div className="w-18 h-10 border-1 border-gray-500 rounded-2xl flex justify-center items-center"> 
+<div className={`w-12 h-4 rounded-3xl flex  items-center ${isVegOn?"justify-end bg-green-400":"justify-start bg-gray-400"}`}>
+  <button onClick={()=>{
+    if(isNonVegOn)
+      setNonVegOn(false);
+    setVegOn(!isVegOn)}} className="w-6 h-6 border-1 border-green-400 rounded-lg flex justify-center items-center bg-white"><div className="w-3 h-3 rounded-[50%] bg-green-500"></div></button>
+</div>
+   </div>
+    <div className="w-18 h-10 border-1 border-gray-500 rounded-2xl flex justify-center items-center"> 
+<div className={`w-12 h-4 rounded-3xl flex  items-center ${isNonVegOn?"justify-end bg-red-600":"justify-start bg-gray-400"}`}>
+  <button onClick={()=>{
+    if(isVegOn)
+      setVegOn(false);
+    setNonVegOn(!isNonVegOn)}} className="w-6 h-6 border-1 border-red-400 rounded-lg flex justify-center items-center bg-white"><div className="w-0 h-0 
+  border-l-[7px] border-l-transparent 
+  border-r-[7px] border-r-transparent 
+  border-b-[14px] border-b-red-600"></div></button>
+</div>
+   </div>
+   </div>
       {data.map((e, i) => {
         return (
           <div
@@ -66,7 +85,7 @@ export default function FoodCard() {
 
             {openSections[i] && (
               <div className="mt-4">
-                <Recommended itemCards={e?.card?.card?.itemCards} />
+                <Recommended itemCards={e?.card?.card?.itemCards} isVeg={isVegOn} isNonveg={isNonVegOn} />
               </div>
             )}
           </div>
