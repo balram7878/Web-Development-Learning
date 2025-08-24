@@ -692,6 +692,32 @@ For passwords → Hashing is preferred, not encryption.
 - Store Hash + Salt together in DB.
   > When user logs in, bcrypt repeats the process with the given password and compares hashes.
 
+$2b$12$9O6Oup7VQvW8DJJb2rYlJuiD57A5x9Ry0GH1U7rH5nPTZXsnj1vWe
+\_\_/ \_\_/ \_****\*\*****\_\_\_\_****\*\*****/ \_**\*\*\*\***\_\_\_\_**\*\*\*\***/
+| | | |
+| | | +--> Hashed password (after salting & key derivation)
+| | |
+| | +--> 22-character salt (Base64 encoded)
+| |
+| +--> Cost factor / Work factor (log2 of iterations, here 2^12 = 4096 rounds)
+|
++--> Version identifier (`2a`, `2b`, `2y`, etc.)
+
+> Version ($2b$)
+
+- tells which dcrypt algorithm version was used.
+  > Cost factor ($12$)
+- also called round or work factor
+- 12 means bcrypt will run the hashing algorithm 2^12=4096 times -> making brute force harder.
+  > salt
+- a random 128-bit value
+- ensure same password generate different hash each time.
+  > password hash
+- Final hashed output after combining password + salt and running through bcrypt algorithm.
+- Length is 31 characters (Base64 encoded).
+
+**_So bcrypt hash = version + cost + salt + password hash. When you call bcrypt.compare(), it extracts the salt & cost from this string automatically to hash the user input the same way for comparison._**
+
 # Why bcrypt is Secure
 
 - Salt ensures uniqueness of hashes.
