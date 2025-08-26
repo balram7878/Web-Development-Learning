@@ -1,6 +1,7 @@
 import Home from "./component/Home";
 import Restaurants from "./component/Restaurants";
 import Items from "./component/Items"; 
+import Search from "./component/Restaurants/Search";
 import { BrowserRouter, Routes, Route } from "react-router";
 
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/restaurants" element={<Restaurants />}></Route>
           <Route path="/city/chandigarh/:id" element={<Items/>}></Route>
+          <Route path="/city/chandigarh/:id/search" element={<Search/>}></Route>
         </Routes>
       </BrowserRouter>
     </>
