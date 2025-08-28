@@ -307,4 +307,6 @@ index.js
 - Browser have a same origin policy (SOP) to prevent malicious website from reading sensitive data from other sites.
 - so cors is enforced by browsers not by internet or servers.
 
+---
 
+# Local state varibles loose their value when you change your route so the solution for this is read value from the store

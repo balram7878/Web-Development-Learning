@@ -1,4 +1,21 @@
+import { useState } from "react";
+
 export default function Recommended({ itemCards=[], isVeg=false, isNonVeg=false }) {
+
+
+// const addFood = (index) => {
+//   setItem((prev) => ({
+//     ...prev,
+//     [index]: (prev[index] || 0) + 1
+//   }));
+// };
+
+// const reduceFood = (index) => {
+//   setItem((prev) => ({
+//     ...prev,
+//     [index]: Math.max((prev[index] || 0) - 1, 0) 
+//   }));
+// };
 
 
   if (isVeg) {
@@ -7,6 +24,7 @@ export default function Recommended({ itemCards=[], isVeg=false, isNonVeg=false 
     <>
       {itemCards?.length > 0 ? (
         itemCards.filter((e)=>e?.card?.info?.isVeg).map((e) => {
+          const [item, setItem] = useState(0);
           const info=e?.card?.info;
           return (
             <div
@@ -41,9 +59,21 @@ export default function Recommended({ itemCards=[], isVeg=false, isNonVeg=false 
                     alt={info.name}
                     className="w-32 h-32 object-cover rounded-lg shadow-md"
                   />
-                  <button className="w-32 py-2 px-4 bg-green-500 hover:bg-green-600 transition rounded-lg text-white font-semibold text-sm shadow-md">
-                    + ADD
-                  </button>
+{item > 0 ? (
+  <div className="w-32 py-2 px-4 flex justify-center items-center gap-5 bg-green-500 rounded-lg text-white font-semibold text-lg shadow-md">
+    <button onClick={() => setItem(item-1)} className="text-xl">-</button>
+    <span>{item}</span>
+    <button onClick={() => setItem(item+1)} className="text-xl">+</button>
+  </div>
+) : (
+  <button
+    onClick={() => setItem(item+1)}
+    className="w-32 py-2 px-4 bg-green-500 hover:bg-green-600 transition rounded-lg text-white font-semibold text-sm shadow-md"
+  >
+    + ADD
+  </button>
+)}
+
                   <h3 className="text-xs text-gray-500 italic">Customisable</h3>
                 </div>
               </div>
@@ -67,6 +97,7 @@ export default function Recommended({ itemCards=[], isVeg=false, isNonVeg=false 
     <>
       {itemCards?.length > 0 ? (
         itemCards.filter((e)=>!e?.card?.info?.isVeg).map((e) => {
+          const [item, setItem] = useState(0);
           const info=e?.card?.info;
           return (
             <div
@@ -101,9 +132,23 @@ export default function Recommended({ itemCards=[], isVeg=false, isNonVeg=false 
                     alt={info.name}
                     className="w-32 h-32 object-cover rounded-lg shadow-md"
                   />
-                  <button className="w-32 py-2 px-4 bg-green-500 hover:bg-green-600 transition rounded-lg text-white font-semibold text-sm shadow-md">
-                    + ADD
-                  </button>
+{item > 0 ? (
+  <div className="w-32 py-2 px-4 flex justify-center items-center gap-5 bg-green-500 rounded-lg text-white font-semibold text-lg shadow-md">
+    <button onClick={() => setItem(item-1)} className="text-xl">-</button>
+    <span>{item}</span>
+    <button onClick={() => setItem(item+1)} className="text-xl">+</button>
+  </div>
+) : (
+  <button
+    onClick={() => setItem(item+1)}
+    className="w-32 py-2 px-4 bg-green-500 hover:bg-green-600 transition rounded-lg text-white font-semibold text-sm shadow-md"
+  >
+    + ADD
+  </button>
+)}
+
+
+
                   <h3 className="text-xs text-gray-500 italic">Customisable</h3>
                 </div>
               </div>
@@ -125,6 +170,7 @@ export default function Recommended({ itemCards=[], isVeg=false, isNonVeg=false 
     <>
       {itemCards?.length > 0 ? (
         itemCards.map((e) => {
+          const [item, setItem] = useState(0);
           const info=e?.card?.info || e?.card?.card?.info;
           return (
             <div
@@ -159,9 +205,24 @@ export default function Recommended({ itemCards=[], isVeg=false, isNonVeg=false 
                     alt={info.name}
                     className="w-32 h-32 object-cover rounded-lg shadow-md"
                   />
-                  <button className="w-32 py-2 px-4 bg-green-500 hover:bg-green-600 transition rounded-lg text-white font-semibold text-sm shadow-md">
-                    + ADD
-                  </button>
+           
+
+          {item > 0 ? (
+  <div className="w-32 py-2 px-4 flex justify-center items-center gap-5 bg-green-500 rounded-lg text-white font-semibold text-lg shadow-md">
+    <button onClick={() => setItem(item-1)} className="text-xl">-</button>
+    <span>{item}</span>
+    <button onClick={() => setItem(item+1)} className="text-xl">+</button>
+  </div>
+) : (
+  <button
+    onClick={() => setItem(item+1)}
+    className="w-32 py-2 px-4 bg-green-500 hover:bg-green-600 transition rounded-lg text-white font-semibold text-sm shadow-md"
+  >
+    + ADD
+  </button>
+)}
+
+
                   <h3 className="text-xs text-gray-500 italic">Customisable</h3>
                 </div>
               </div>
