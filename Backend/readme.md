@@ -723,3 +723,15 @@ $2b$12$9O6Oup7VQvW8DJJb2rYlJuiD57A5x9Ry0GH1U7rH5nPTZXsnj1vWe
 - Salt ensures uniqueness of hashes.
 - Cost factor makes hashing intentionally slow → prevents attackers from trying millions of guesses quickly.
 - One-way hashing → even if DB is leaked, original password can’t be found.
+
+---
+
+# JWT (Jason Web Token) Token
+- also called access token
+- JWT token consist of **Header.payload.Digital_Signature**
+- header contain token type and algorithm used to signature
+- header and payload neither encrypted nor hashed, they are encoded in Base64 formatting
+
+---
+
+# Refresh Token
