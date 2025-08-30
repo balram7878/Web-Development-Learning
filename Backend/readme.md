@@ -727,6 +727,10 @@ $2b$12$9O6Oup7VQvW8DJJb2rYlJuiD57A5x9Ry0GH1U7rH5nPTZXsnj1vWe
 ---
 
 # JWT (Jason Web Token) Token
+
+- so at first place think why we need token and all that stuff, so that we make our architecture stateless, stateless means server don't have to remember everything about client, so everytime we need password and a used ID to login, we just sent a token with request and this make all the things clear and easy for the client but this make probelm even more problametic if someone theft our token, becasue  when you login first time server generate a JWT token and give it to client and browser manage all the tokens come with response by the server, and next time you open your session it is already login, but if someone have your token then even you change your password and your server don't put expiry on respspective token then you are under a serious cyber theft.
+- the most important thing behind cookies or token is that we don't have to query every time in DB, query operations are expensive and time consuming and if we use cloud service and they are also costly so we avoid these operations as possible as that
+- so where these tokens are present, these are present in cookies, with session IDs
 - also called access token
 - JWT token consist of **Header.payload.Digital_Signature**
 - header contain token type and algorithm used to signature
@@ -735,3 +739,7 @@ $2b$12$9O6Oup7VQvW8DJJb2rYlJuiD57A5x9Ry0GH1U7rH5nPTZXsnj1vWe
 ---
 
 # Refresh Token
+
+- so to avoid security issues that binds with JWT or access token, server generate refresh token with access token and set a expiry time of both tokens, and everytime when access token is expired, server validate refresh token and give a new access token to the client, generally refresh token has more expiry time compare to access token.
+- refresh token is stored in DB, it is a random string associate it user information, whenever user change password, server invalidate refresh token and generate a new one, so even someone steal them but they don't access the account, but there are some trade off to every solution, we have to do DB queries here also to validate refresh tokens
+- 
