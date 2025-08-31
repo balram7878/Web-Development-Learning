@@ -5,6 +5,7 @@ const ValidateUser = require("../utils/ValidateUser");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const authUser= require("../middleware/User.Auth");
+require("dotenv").config();
 
 const app = express();
 app.use(express.json());
@@ -60,7 +61,7 @@ app.patch("/update/user",authUser, async (req, res) => {
 main()
   .then(() => {
     console.log("Connected to DB");
-    app.listen(1234);
+    app.listen(process.env.PORT);
   })
   .catch((err) => {
     console.log(err);

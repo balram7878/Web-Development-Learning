@@ -277,7 +277,7 @@ index.js
 1. name - a unique name of the slice
 2. initial state - the default value for this piece of state
 3. reducers - functions that define how this slice state changes in response to actions
-4. actions - redux toolkil automatically generates action creator for each reducer.
+4. actions - redux toolkit automatically generates action creator for each reducer.
 
 # useSelector
 
