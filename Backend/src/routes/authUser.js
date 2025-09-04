@@ -2,6 +2,7 @@ const express=require("express");
 const User = require("../database/models/User");
 const bcrypt = require("bcrypt");
 const ValidateUser = require("../utils/ValidateUser");
+const authUser = require("../middleware/User.Auth");
 
 
 const authRouter=express.Router();
@@ -29,6 +30,15 @@ authRouter.post("/login",async (req, res) => {
     res.json({ id: user.id, email: user.email, name: user.name });
   } catch (err) {
     res.status(400).json({ error: err.message });
+  }
+});
+
+authRouter.post("/logout",(req,res)=>{
+  try{
+    res.cookie("Token",null,{expires:new Date(Date.now())});
+    res.send("logout successfully");
+  }catch(err){
+    res.status(404).json({error:err.message})
   }
 });
 
