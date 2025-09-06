@@ -693,7 +693,7 @@ For passwords → Hashing is preferred, not encryption.
   > When user logs in, bcrypt repeats the process with the given password and compares hashes.
 
 $2b$12$9O6Oup7VQvW8DJJb2rYlJuiD57A5x9Ry0GH1U7rH5nPTZXsnj1vWe
-\_\_/ \_\_/ \_****\*\*****\_\_\_\_****\*\*****/ \_**\*\*\*\***\_\_\_\_**\*\*\*\***/
+\_\_/ \_\_/ \_\***\*\*\*\*\***\_\_\_\_\***\*\*\*\*\***/ \_**\*\*\*\***\_\_\_\_**\*\*\*\***/
 | | | |
 | | | +--> Hashed password (after salting & key derivation)
 | | |
@@ -726,20 +726,94 @@ $2b$12$9O6Oup7VQvW8DJJb2rYlJuiD57A5x9Ry0GH1U7rH5nPTZXsnj1vWe
 
 ---
 
-# JWT (Jason Web Token) Token
+# JWT (JSON Web Token)
 
-- so at first place think why we need token and all that stuff, so that we make our architecture stateless, stateless means server don't have to remember everything about client, so everytime we need password and a used ID to login, we just sent a token with request and this make all the things clear and easy for the client but this make probelm even more problametic if someone theft our token, becasue  when you login first time server generate a JWT token and give it to client and browser manage all the tokens come with response by the server, and next time you open your session it is already login, but if someone have your token then even you change your password and your server don't put expiry on respspective token then you are under a serious cyber theft.
-- the most important thing behind cookies or token is that we don't have to query every time in DB, query operations are expensive and time consuming and if we use cloud service and they are also costly so we avoid these operations as possible as that
-- so where these tokens are present, these are present in cookies, with session IDs
-- also called access token
-- JWT token consist of **Header.payload.Digital_Signature**
-- header contain token type and algorithm used to signature
-- header and payload neither encrypted nor hashed, they are encoded in Base64 formatting
+- The main reason we need tokens is to make our architecture stateless.
+- Stateless means the server does not need to remember details about each client between requests.
+- Instead of asking for username/password on every request, the server issues a token after login.
+- The client sends this token with each request, and the server can trust it without re-checking the database every time.
+  > ⚠️ Problem: If someone steals your token, they can act as you until the token expires.
+- Example: If the server doesn’t set an expiry time, even changing your password won’t protect you.
 
----
+* To solve this, we use refresh tokens.
+
+> Benefits:
+
+- Tokens reduce the need for frequent database queries (which are expensive in terms of performance and cost, especially on cloud services).
+  > Storage:
+- Access tokens are usually stored in cookies or localStorage (cookies are preferred with httpOnly for security).
+
+  > Structure of JWT:
+
+- Header.Payload.Signature
+
+- Header → Defines token type (JWT) and signing algorithm.
+- Payload → Contains user data (claims), e.g. userId, role, expiry.
+- Signature → Ensures the token has not been tampered with (server signs it with a secret key).
+
+> ⚠️ Important: Header and Payload are Base64 encoded (not encrypted). Anyone can decode and read them.
+
+- Only the signature guarantees the token’s integrity.
 
 # Refresh Token
 
-- so to avoid security issues that binds with JWT or access token, server generate refresh token with access token and set a expiry time of both tokens, and everytime when access token is expired, server validate refresh token and give a new access token to the client, generally refresh token has more expiry time compare to access token.
-- refresh token is stored in DB, it is a random string associate it user information, whenever user change password, server invalidate refresh token and generate a new one, so even someone steal them but they don't access the account, but there are some trade off to every solution, we have to do DB queries here also to validate refresh tokens
-- 
+- To avoid security risks with long-lived JWTs, the server issues two tokens at login:
+- Access Token → Short-lived (minutes to hours).
+- Refresh Token → Longer-lived (days to weeks).
+
+> Flow:
+
+- Client logs in → gets both tokens.
+- Client uses the access token until it expires.
+- When expired, client sends the refresh token to the server.
+- Server verifies the refresh token (usually stored in the DB).
+- Server issues a new access token.
+
+> Properties:
+
+- Refresh token is often stored in the database (or secure storage) and tied to the user.
+- If the user changes their password or logs out, the server invalidates the refresh token.
+- This prevents attackers from continuing to use a stolen token.
+
+> Trade-off:
+
+- Refresh tokens bring back some state to the server, because it must check the DB for validity.
+
+## But they are essential for security and controlled session management.
+
+> The server only stores the secret key 🔑 — not the token itself and not the token’s signature.
+> Here’s why:
+
+- The token already contains everything (header, payload, signature).
+- The server doesn’t need to remember past tokens because JWT is stateless.
+- When a request comes in with a token, the server just:
+- Takes the header + payload from the token.
+- Runs them through the hash function with its secret key.
+- Compares the result with the token’s signature.
+
+👉 If they match → token is valid.
+👉 If they don’t → token is invalid or tampered.
+
+> That’s the beauty of JWT: the server doesn’t need to keep a database of tokens (unless you’re using refresh tokens, which usually are stored in DB).
+
+---
+
+# Redis
+
+- redis (remote dictionary server) is a in-memory data store that can be used as:
+
+1. a database
+2. a cache
+3. a message broker
+   > It is super fast because it stores data in RAM instead of hard disk which make read/write operations almost instantaneous compared to traditional DBs.
+   > it store data in key:value pairs
+   > even though it's in memory, redis can save snapshots of logs in disk so you don't loose data after restart
+   > pub/sub (publish and subscribe) - works like a messaging system where services can publish message and other can subscribe
+
+# Use-cases:
+
+> caching: store frequently used data to reduce DB queries
+> session: save user sessions
+> rate-limiting: trach requests per IP/user for APIs
+> Real-time analytics: Count likes, views, etc. instantly.
+> Pub/Sub messaging: Chat applications, notifications, etc.

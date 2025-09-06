@@ -1,5 +1,6 @@
 const User = require("../database/models/User");
 const jwt = require("jsonwebtoken");
+const client=require("../config/redis");
 require("dotenv").config();
 
 async function authUser(req, res, next) {
@@ -8,6 +9,8 @@ async function authUser(req, res, next) {
     if (!Token) {
       return res.status(401).json({ error: "No token provided" });
     }
+
+    if(await client.exists(`token:${Token}`)) return res.status(401).json({error:"invalid token"});
 
     const payload = jwt.verify(Token, process.env.JWT_TOKEN_KEY);
     const { _id } = payload;

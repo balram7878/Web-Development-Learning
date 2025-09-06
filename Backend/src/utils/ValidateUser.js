@@ -26,3 +26,6 @@ function ValidateUser(user) {
 }
 
 module.exports = ValidateUser;
+
+//["name", "age", "gender", "email", "password"].every(e=>["name","email","password"].includes(e)) -> false -> this is not work as like we expect
+//["name","email","password"].every(e=>["name", "age", "gender", "email", "password"].includes(e)) -> true -> this is right 

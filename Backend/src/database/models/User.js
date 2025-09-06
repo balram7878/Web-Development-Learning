@@ -48,7 +48,7 @@ userSchema.methods.generateJWT = function () {
     { _id: this._id, email: this.email },
     process.env.JWT_TOKEN_KEY,
     {
-      expiresIn: "20m",
+      expiresIn: "2m",
     }
   );
 };
