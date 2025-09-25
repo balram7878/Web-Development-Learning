@@ -8,7 +8,7 @@ export default function Restaurants() {
 useEffect(() => {
   async function fetchData() {
     try {
-      const response = await fetch("http://localhost:5678/restaurants");
+      const response = await fetch("https://nodejs-production-a169.up.railway.app/restaurants");
       const obj = await response.json();
 
       console.log(obj);

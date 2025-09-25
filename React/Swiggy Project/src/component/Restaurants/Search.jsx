@@ -10,7 +10,7 @@ export default function Search() {
     (async () => {
       try {
         const response = await fetch(
-          `http://localhost:5678/city/chandigarh/${id}`
+          `https://nodejs-production-a169.up.railway.app/${id}`
         );
         const card = await response.json();
         const arr =

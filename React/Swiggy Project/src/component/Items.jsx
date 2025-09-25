@@ -13,7 +13,7 @@ export default function FoodCard() {
     (async () => {
       try {
         const response = await fetch(
-          `http://localhost:5678/city/chandigarh/${id}`
+          `https://nodejs-production-a169.up.railway.app/city/chandigarh/${id}`
         );
         const card = await response.json();
 

@@ -5,7 +5,7 @@ export default function Header() {
     <>
       <div className="bg-[#ff5200] h-screen w-full relative">
         <div className="w-screen p-4 flex justify-evenly items-center h-[80px] absolute top-6">
-          <a href="http://localhost:1234/">
+          <a href="https://nodejs-production-a169.up.railway.app/">
             {" "}
             <img
               src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/portal/static-assets/images/swiggy_logo_white.png"
