@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 
@@ -41,6 +42,6 @@ app.get("/city/chandigarh/:id", (req, res) => {
 //   fetchData(url, res);
 // });
 
-app.listen(5678, () => {
+app.listen(process.env.PORT, () => {
   console.log("Listen at 5678");
 });
