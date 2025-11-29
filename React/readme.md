@@ -309,4 +309,4 @@ index.js
 
 ---
 
-# Local state varibles loose their value when you change your route so the solution for this is read value from the store
+# Local state varibles loose their value when you change your route so the solution for this is read value from the store.
